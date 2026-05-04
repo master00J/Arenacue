@@ -6,6 +6,14 @@ import { getAdminPathPrefix, getAdminPathSegment, isAdminLoginPath, isAdminUiPat
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  /** Als de portable niet in `public/` zit (Vercel), doorverwijzen naar een vaste HTTPS-URL (bv. Supabase Storage). */
+  if (pathname === "/downloads/Stadium-Scoreboard.exe") {
+    const redirect = process.env.DOWNLOAD_STADIUM_EXE_REDIRECT_URL?.trim();
+    if (redirect && /^https:\/\//i.test(redirect)) {
+      return NextResponse.redirect(redirect, 307);
+    }
+  }
+
   if (pathname.startsWith("/api")) {
     return NextResponse.next();
   }
