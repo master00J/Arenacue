@@ -1,10 +1,11 @@
 import type { Metadata, Viewport } from "next";
+import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
 
+const siteUrl = getSiteUrl();
+
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://arenacue.be",
-  ),
+  metadataBase: new URL(siteUrl),
   title: "ArenaCue | Stadium Scoreboard & Display Control",
   description:
     "ArenaCue is professionele Windows-software voor live scoreboards, sponsorrotatie, matchstatus en stadiondisplay control.",
