@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { DemoRequestForm } from "@/components/demo-request-form";
 
 const features = [
   {
@@ -32,9 +33,6 @@ const releaseItems = [
   "Downloadbare installers per softwareversie",
   "Voorbereid op automatische update-meldingen in de desktopapp",
 ];
-
-const demoMailto =
-  "mailto:info@arenacue.be?subject=Demo%20ArenaCue&body=Hallo%20ArenaCue%2C%0A%0AIk%20wil%20graag%20een%20demo%20aanvragen.%0A%0AClub%3A%20%0ASchermopstelling%3A%20%0AGewenste%20timing%3A%20%0A";
 
 export default function Home() {
   return (
@@ -227,30 +225,34 @@ export default function Home() {
             download voor je club.
           </p>
         </div>
-        <div className="contact-card">
-          <Image
-            src="/assets/arenacue-icon.png"
-            alt=""
-            width={74}
-            height={74}
-          />
-          <h3>Vraag een demo of download aan</h3>
-          <p>
-            Stuur ons je clubnaam, gewenste schermopstelling en timing. Dan
-            bekijken we welke ArenaCue-versie het best past.
-          </p>
-          <a className="primary-button full" href={demoMailto}>
-            Contacteer ArenaCue
-          </a>
-          <a className="secondary-button full" href="mailto:info@arenacue.be">
-            info@arenacue.be
-          </a>
+        <div className="contact-stack">
+          <div className="contact-card">
+            <Image
+              src="/assets/arenacue-icon.png"
+              alt=""
+              width={74}
+              height={74}
+            />
+            <h3>Vraag een demo of download aan</h3>
+            <p>
+              Vul je gegevens in en we nemen contact op om de juiste
+              ArenaCue-opstelling voor je club te bespreken.
+            </p>
+            <a className="secondary-button full" href="mailto:info@arenacue.be">
+              info@arenacue.be
+            </a>
+          </div>
+          <DemoRequestForm />
         </div>
       </section>
 
       <footer className="footer">
         <span>© {new Date().getFullYear()} ArenaCue</span>
         <span>Stadium Scoreboard & Display Control</span>
+        <span className="footer-links">
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Voorwaarden</a>
+        </span>
       </footer>
     </main>
   );
