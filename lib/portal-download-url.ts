@@ -14,7 +14,7 @@ export function sanitizePortalDownloadUrl(raw: string | null | undefined): strin
     if (!pathOnly.startsWith("/") || pathOnly.length < 2) {
       return null;
     }
-    if (!/^\/[A-Za-z0-9/._~%-]+$/.test(pathOnly)) {
+    if (!/^\/[-A-Za-z0-9/._~%]+$/.test(pathOnly)) {
       return null;
     }
     return u;
