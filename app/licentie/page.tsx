@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { LicensePortalForm } from "@/components/license-portal-form";
+import { LicentiePortalClient } from "@/components/licentie-portal-client";
 
 export const metadata: Metadata = {
   title: "Licentiestatus | ArenaCue",
@@ -19,7 +19,7 @@ export default function LicentiePage() {
             <Link href="/#contact">Demo</Link>
           </div>
         </nav>
-        <LicensePortalForm />
+        <LicentiePortalClient />
       </div>
     </main>
   );

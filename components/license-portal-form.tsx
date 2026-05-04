@@ -37,7 +37,12 @@ function statusLabel(s: PortalLicense["status"]): { text: string; cls: string } 
   return { text: "Verlopen", cls: "badge-warn" };
 }
 
-export function LicensePortalForm() {
+export function LicensePortalForm({
+  portalReleaseVersion = null,
+}: {
+  /** Zelfde bron als /api/app/release (optioneel regel bij download). */
+  portalReleaseVersion?: string | null;
+} = {}) {
   const [licenseKey, setLicenseKey] = useState("");
   const [ownerEmail, setOwnerEmail] = useState("");
   const [loading, setLoading] = useState(false);
@@ -167,6 +172,16 @@ export function LicensePortalForm() {
                   <p className="form-hint" style={{ marginTop: 12, marginBottom: 0 }}>
                     Installeer ArenaCue op je Windows-pc met deze download. Bij vragen:{" "}
                     <a href="mailto:info@arenacue.be">info@arenacue.be</a>.
+                    {portalReleaseVersion ? (
+                      <>
+                        {" "}
+                        Publicatie op dit portaal:{" "}
+                        <strong style={{ fontFamily: "ui-monospace", color: "var(--text)" }}>
+                          v{portalReleaseVersion}
+                        </strong>
+                        .
+                      </>
+                    ) : null}
                   </p>
                 </>
               ) : (
