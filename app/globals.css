@@ -11,6 +11,14 @@
   --blue: #2087ff;
   --green: #21f36b;
   --shadow: 0 28px 90px rgba(0, 132, 255, 0.22);
+  /* Smalle schermen: binnen viewport; grote PC: breder raster zodat de pagina het scherm vult */
+  --layout-max: min(1180px, calc(100vw - 48px));
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --layout-max: min(1680px, calc(100vw - 96px));
+  }
 }
 
 * {
@@ -89,7 +97,7 @@ main {
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  max-width: 1180px;
+  max-width: var(--layout-max);
   margin: 0 auto;
   padding: 14px 16px;
   border: 1px solid var(--line);
@@ -175,8 +183,8 @@ main {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(360px, 0.92fr);
   align-items: center;
-  gap: 52px;
-  max-width: 1180px;
+  gap: clamp(36px, 4vw, 72px);
+  max-width: var(--layout-max);
   margin: 82px auto 0;
 }
 
@@ -448,7 +456,7 @@ main {
 .updates,
 .contact,
 .footer {
-  max-width: 1180px;
+  max-width: var(--layout-max);
   margin: 0 auto;
   padding: 86px 24px;
 }
