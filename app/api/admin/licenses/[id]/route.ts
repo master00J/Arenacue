@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { adminGuard } from "@/lib/admin-route-guard";
 import { adminGetLicense, adminListInstallations, adminUpdateLicense } from "@/lib/license-admin-data";
+import { sanitizePortalDownloadUrl } from "@/lib/portal-download-url";
 
 const uuid = z.string().uuid();
 
@@ -13,6 +14,7 @@ const patchBody = z.object({
   plan: z.enum(["trial", "standard", "club", "enterprise"]).optional(),
   notes: z.union([z.string().trim().max(2000), z.literal(""), z.null()]).optional(),
   revoked: z.boolean().optional(),
+  downloadUrl: z.union([z.string(), z.literal(""), z.null()]).optional(),
 });
 
 export async function GET(_request: Request, ctx: { params: Promise<{ id: string }> }) {
@@ -87,6 +89,12 @@ export async function PATCH(request: Request, ctx: { params: Promise<{ id: strin
   }
   if (p.notes !== undefined) {
     patch.notes = p.notes === "" || p.notes === null ? null : p.notes;
+  }
+  if (p.downloadUrl !== undefined) {
+    patch.download_url =
+      p.downloadUrl === "" || p.downloadUrl === null
+        ? null
+        : sanitizePortalDownloadUrl(String(p.downloadUrl));
   }
   if (p.revoked === true) {
     patch.revoked_at = new Date().toISOString();

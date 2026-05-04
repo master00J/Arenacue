@@ -9,6 +9,8 @@ type PortalLicense = {
   status: "active" | "revoked" | "expired";
   maxActivations: number;
   usedActivations: number;
+  downloadUrl?: string | null;
+  downloadLabel?: string | null;
   installations: {
     deviceLabel: string;
     machinePreview: string;
@@ -138,6 +140,43 @@ export function LicensePortalForm() {
                 ? "Deze licentie is ingetrokken. Neem contact op met ArenaCue."
                 : "Deze licentie is verlopen. Neem contact op met ArenaCue om te verlengen."}
             </p>
+          )}
+
+          {data.status === "active" && (
+            <div
+              style={{
+                marginBottom: 20,
+                padding: "14px 16px",
+                borderRadius: 10,
+                border: "1px solid rgba(0, 229, 255, 0.22)",
+                background: "rgba(0, 229, 255, 0.06)",
+              }}
+            >
+              <h3 style={{ margin: "0 0 10px", fontSize: "0.95rem", color: "var(--muted)" }}>Download</h3>
+              {data.downloadUrl ? (
+                <>
+                  <a
+                    className="primary-button"
+                    href={data.downloadUrl}
+                    {...(data.downloadUrl.startsWith("http://") || data.downloadUrl.startsWith("https://")
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
+                  >
+                    {data.downloadLabel?.trim() || "Download"}
+                  </a>
+                  <p className="form-hint" style={{ marginTop: 12, marginBottom: 0 }}>
+                    Installeer ArenaCue op je Windows-pc met deze download. Bij vragen:{" "}
+                    <a href="mailto:info@arenacue.be">info@arenacue.be</a>.
+                  </p>
+                </>
+              ) : (
+                <p className="form-hint" style={{ margin: 0 }}>
+                  Er is nog geen downloadlink geconfigureerd voor dit portaal. Neem contact op met ArenaCue of
+                  vraag je beheerder om een link in te stellen (
+                  <code style={{ color: "var(--cyan)" }}>NEXT_PUBLIC_PORTAL_DOWNLOAD_URL</code> of per licentie).
+                </p>
+              )}
+            </div>
           )}
 
           <h3 style={{ margin: "18px 0 10px", fontSize: "0.95rem", color: "var(--muted)" }}>Geactiveerde machines</h3>

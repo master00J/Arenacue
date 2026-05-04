@@ -11,6 +11,7 @@ export type LicenseFullRow = {
   plan: string;
   notes: string | null;
   owner_email: string | null;
+  download_url: string | null;
 };
 
 export type InstallationFullRow = {
@@ -140,6 +141,7 @@ export async function adminCreateLicense(row: {
   valid_until: string | null;
   plan: string;
   notes: string | null;
+  download_url: string | null;
 }): Promise<{ ok: true } | { ok: false; status: number; text: string }> {
   return restPost("licenses", row);
 }
@@ -154,6 +156,7 @@ export async function adminUpdateLicense(
     revoked_at: string | null;
     plan: string;
     notes: string | null;
+    download_url: string | null;
   }>,
 ): Promise<{ ok: true } | { ok: false; status: number; text: string }> {
   const enc = encodeURIComponent(id);

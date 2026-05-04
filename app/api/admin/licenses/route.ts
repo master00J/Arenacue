@@ -3,6 +3,7 @@ import { z } from "zod";
 import { adminGuard } from "@/lib/admin-route-guard";
 import { adminCreateLicense, adminListLicenses } from "@/lib/license-admin-data";
 import { generateLicenseKey } from "@/lib/license-keygen";
+import { sanitizePortalDownloadUrl } from "@/lib/portal-download-url";
 
 const createBody = z.object({
   organizationLabel: z.string().trim().min(1).max(200),
@@ -12,6 +13,7 @@ const createBody = z.object({
   plan: z.enum(["trial", "standard", "club", "enterprise"]),
   notes: z.string().trim().max(2000).optional().nullable(),
   licenseKey: z.string().trim().min(8).max(64).optional(),
+  downloadUrl: z.union([z.string(), z.literal(""), z.null()]).optional(),
 });
 
 function toIsoEndOfDayOrNull(v: string | null | undefined): string | null {
@@ -81,6 +83,11 @@ export async function POST(request: Request) {
     valid_until: toIsoEndOfDayOrNull(v.validUntil ?? null),
     plan: v.plan,
     notes: v.notes?.trim() || null,
+    download_url: sanitizePortalDownloadUrl(
+      v.downloadUrl === "" || v.downloadUrl === null || v.downloadUrl === undefined
+        ? null
+        : String(v.downloadUrl),
+    ),
   });
 
   if (!result.ok) {

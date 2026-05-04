@@ -13,6 +13,7 @@ create table if not exists public.licenses (
   plan text not null default 'standard',
   notes text,
   owner_email text,
+  download_url text,
   constraint licenses_license_key_key unique (license_key),
   constraint licenses_max_activations_check check (max_activations >= 1 and max_activations <= 500),
   constraint licenses_plan_check check (plan in ('trial', 'standard', 'club', 'enterprise'))
@@ -44,6 +45,8 @@ alter table public.licenses add column if not exists owner_email text;
 create index if not exists licenses_owner_email_lower_idx
 on public.licenses (lower(owner_email))
 where owner_email is not null;
+
+alter table public.licenses add column if not exists download_url text;
 
 -- Voorbeeld: nieuwe licentie (pas sleutel en label aan)
 -- insert into public.licenses (license_key, organization_label, owner_email, max_activations, valid_until, plan)

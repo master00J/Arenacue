@@ -13,6 +13,7 @@ export function AdminNewLicenseForm() {
   const [validUntil, setValidUntil] = useState("");
   const [plan, setPlan] = useState<"trial" | "standard" | "club" | "enterprise">("standard");
   const [notes, setNotes] = useState("");
+  const [downloadUrl, setDownloadUrl] = useState("");
   const [licenseKey, setLicenseKey] = useState("");
   const [autoKey, setAutoKey] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -28,6 +29,7 @@ export function AdminNewLicenseForm() {
         maxActivations,
         plan,
         notes: notes.trim() || null,
+        downloadUrl: downloadUrl.trim() || null,
         ownerEmail: ownerEmail.trim() || "",
         validUntil: validUntil.trim() || null,
       };
@@ -101,6 +103,18 @@ export function AdminNewLicenseForm() {
         <label>
           Notities (intern)
           <textarea value={notes} onChange={(e) => setNotes(e.target.value)} />
+        </label>
+        <label>
+          Download-URL voor klant (optioneel)
+          <input
+            value={downloadUrl}
+            onChange={(e) => setDownloadUrl(e.target.value)}
+            placeholder="https://… of leeg voor globale site-URL"
+          />
+          <span className="form-hint">
+            Leeg = gebruikt <code style={{ color: "var(--cyan)" }}>NEXT_PUBLIC_PORTAL_DOWNLOAD_URL</code> op
+            Vercel.
+          </span>
         </label>
         <label style={{ display: "flex", gap: 10, alignItems: "center" }}>
           <input type="checkbox" checked={autoKey} onChange={(e) => setAutoKey(e.target.checked)} />

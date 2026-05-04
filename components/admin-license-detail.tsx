@@ -33,6 +33,7 @@ export function AdminLicenseDetailClient(props: {
   );
   const [plan, setPlan] = useState(license.plan);
   const [notes, setNotes] = useState(license.notes ?? "");
+  const [downloadUrl, setDownloadUrl] = useState(license.download_url ?? "");
   const [msg, setMsg] = useState<string | null>(null);
   const [err, setErr] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
@@ -56,6 +57,7 @@ export function AdminLicenseDetailClient(props: {
           validUntil: validUntil.trim() || null,
           plan,
           notes: notes.trim() || null,
+          downloadUrl: downloadUrl.trim() || null,
         }),
       });
       const data = (await res.json()) as { ok?: boolean; message?: string };
@@ -72,6 +74,7 @@ export function AdminLicenseDetailClient(props: {
         valid_until: validUntil.trim() ? `${validUntil.trim()}T23:59:59.999Z` : null,
         plan,
         notes: notes.trim() || null,
+        download_url: downloadUrl.trim() || null,
       }));
       router.refresh();
     } catch {
@@ -247,6 +250,18 @@ export function AdminLicenseDetailClient(props: {
           <label>
             Notities
             <textarea value={notes} onChange={(e) => setNotes(e.target.value)} />
+          </label>
+          <label>
+            Download-URL (portaal, optioneel)
+            <input
+              value={downloadUrl}
+              onChange={(e) => setDownloadUrl(e.target.value)}
+              placeholder="https://… of /downloads/bestand.exe"
+            />
+            <span className="form-hint">
+              Overschrijft de globale Vercel-URL. Leeg = gebruik{" "}
+              <code style={{ color: "var(--cyan)" }}>NEXT_PUBLIC_PORTAL_DOWNLOAD_URL</code>.
+            </span>
           </label>
           {err && <p className="form-error">{err}</p>}
           {msg && <p className="form-hint" style={{ color: "var(--green)" }}>{msg}</p>}

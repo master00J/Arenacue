@@ -5,6 +5,7 @@ import {
 } from "@/lib/license-admin-data";
 import { getSupabaseAdminHeaders } from "@/lib/supabase-admin";
 import { licensePortalBodySchema, normalizeLicenseKey } from "@/lib/license-keys";
+import { portalDownloadLabel, resolvePortalDownloadUrl } from "@/lib/portal-download-url";
 
 const portalBody = licensePortalBodySchema;
 
@@ -99,6 +100,14 @@ export async function POST(request: Request) {
     );
   }
 
+  const downloadUrl =
+    status === "active"
+      ? resolvePortalDownloadUrl(
+          row.download_url ?? null,
+          process.env.NEXT_PUBLIC_PORTAL_DOWNLOAD_URL,
+        )
+      : null;
+
   return NextResponse.json(
     {
       ok: true,
@@ -109,6 +118,8 @@ export async function POST(request: Request) {
         status,
         maxActivations: row.max_activations,
         usedActivations: installs.length,
+        downloadUrl,
+        downloadLabel: downloadUrl ? portalDownloadLabel() : null,
         installations: installs.map((i) => ({
           deviceLabel: i.device_label || "—",
           machinePreview: machinePreview(i.machine_id),
