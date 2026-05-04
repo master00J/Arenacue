@@ -35,3 +35,5 @@ on public.demo_requests (created_at desc);
 
 create index if not exists demo_requests_status_idx
 on public.demo_requests (status);
+
+-- Licenties: zie ook licenses.sql (tabellen licenses + license_installations).
