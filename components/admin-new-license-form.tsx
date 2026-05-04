@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { getAdminPathPrefix } from "@/lib/admin-url";
 
 export function AdminNewLicenseForm() {
   const router = useRouter();
@@ -44,7 +45,7 @@ export function AdminNewLicenseForm() {
         setError(data.message ?? "Aanmaken mislukt.");
         return;
       }
-      router.push("/admin");
+      router.push(getAdminPathPrefix());
       router.refresh();
     } catch {
       setError("Netwerkfout.");
@@ -56,7 +57,7 @@ export function AdminNewLicenseForm() {
   return (
     <div className="data-card">
       <p className="form-hint" style={{ marginBottom: 18 }}>
-        <Link href="/admin">← Terug naar overzicht</Link>
+        <Link href={getAdminPathPrefix()}>← Terug naar overzicht</Link>
       </p>
       <h1 style={{ margin: "0 0 8px", fontSize: "1.5rem", letterSpacing: "-0.03em" }}>Nieuwe licentie</h1>
       <p className="form-hint" style={{ marginBottom: 22 }}>
@@ -116,7 +117,7 @@ export function AdminNewLicenseForm() {
           <button className="primary-button" type="submit" disabled={loading}>
             {loading ? "Opslaan…" : "Licentie aanmaken"}
           </button>
-          <Link className="secondary-button" href="/admin">
+          <Link className="secondary-button" href={getAdminPathPrefix()}>
             Annuleren
           </Link>
         </div>

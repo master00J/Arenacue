@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { getAdminPathPrefix } from "@/lib/admin-url";
 
 export function AdminLogoutButton() {
   const router = useRouter();
@@ -11,7 +12,7 @@ export function AdminLogoutButton() {
     setLoading(true);
     try {
       await fetch("/api/admin/logout", { method: "POST", credentials: "include" });
-      router.push("/admin/login");
+      router.push(`${getAdminPathPrefix()}/login`);
       router.refresh();
     } finally {
       setLoading(false);

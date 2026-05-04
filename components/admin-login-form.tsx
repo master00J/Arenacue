@@ -2,11 +2,13 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
+import { getAdminPathPrefix } from "@/lib/admin-url";
 
 export function AdminLoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const nextPath = searchParams.get("next") || "/admin";
+  const prefix = getAdminPathPrefix();
+  const nextPath = searchParams.get("next") || prefix;
 
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -27,7 +29,7 @@ export function AdminLoginForm() {
         setError(data.message ?? "Inloggen mislukt.");
         return;
       }
-      router.push(nextPath.startsWith("/admin") ? nextPath : "/admin");
+      router.push(nextPath.startsWith(prefix) ? nextPath : prefix);
       router.refresh();
     } catch {
       setError("Netwerkfout. Probeer opnieuw.");

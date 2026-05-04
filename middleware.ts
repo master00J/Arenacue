@@ -1,20 +1,34 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { ADMIN_COOKIE_NAME, verifyAdminToken } from "@/lib/admin-auth";
+import { getAdminPathPrefix, getAdminPathSegment, isAdminLoginPath, isAdminUiPath } from "@/lib/admin-url";
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  if (!pathname.startsWith("/admin")) {
+
+  if (pathname.startsWith("/api")) {
     return NextResponse.next();
   }
-  if (pathname === "/admin/login" || pathname.startsWith("/admin/login/")) {
+
+  const prefix = getAdminPathPrefix();
+  const custom = getAdminPathSegment() !== "admin";
+
+  if (custom && pathname.startsWith("/admin")) {
+    return new NextResponse(null, { status: 404 });
+  }
+
+  if (!isAdminUiPath(pathname)) {
+    return NextResponse.next();
+  }
+
+  if (isAdminLoginPath(pathname)) {
     return NextResponse.next();
   }
 
   const token = request.cookies.get(ADMIN_COOKIE_NAME)?.value;
   if (!(await verifyAdminToken(token))) {
     const url = request.nextUrl.clone();
-    url.pathname = "/admin/login";
+    url.pathname = `${prefix}/login`;
     url.searchParams.set("next", pathname);
     return NextResponse.redirect(url);
   }
@@ -23,5 +37,7 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*"],
+  matcher: [
+    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|txt|xml|webmanifest)$).*)",
+  ],
 };

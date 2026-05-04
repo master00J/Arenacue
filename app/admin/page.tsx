@@ -2,6 +2,7 @@ import Link from "next/link";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { ADMIN_COOKIE_NAME, verifyAdminToken } from "@/lib/admin-auth";
+import { getAdminPathPrefix } from "@/lib/admin-url";
 import { AdminLogoutButton } from "@/components/admin-logout-button";
 import { adminListLicenses, type LicenseFullRow } from "@/lib/license-admin-data";
 
@@ -32,7 +33,7 @@ function statusBadge(row: LicenseFullRow) {
 export default async function AdminDashboardPage() {
   const tok = (await cookies()).get(ADMIN_COOKIE_NAME)?.value;
   if (!(await verifyAdminToken(tok))) {
-    redirect("/admin/login");
+    redirect(`${getAdminPathPrefix()}/login`);
   }
 
   const rows = await adminListLicenses();
@@ -54,7 +55,7 @@ export default async function AdminDashboardPage() {
           <div style={{ display: "flex", gap: 14, alignItems: "center", flexWrap: "wrap" }}>
             <Link href="/">Website</Link>
             <Link href="/licentie">Klantportaal</Link>
-            <Link href="/admin/licenses/new">+ Nieuwe licentie</Link>
+            <Link href={`${getAdminPathPrefix()}/licenses/new`}>+ Nieuwe licentie</Link>
             <AdminLogoutButton />
           </div>
         </nav>
@@ -85,7 +86,7 @@ export default async function AdminDashboardPage() {
                     <td>{statusBadge(r)}</td>
                     <td>{fmtDate(r.valid_until)}</td>
                     <td>
-                      <Link className="secondary-button" href={`/admin/licenses/${r.id}`}>
+                      <Link className="secondary-button" href={`${getAdminPathPrefix()}/licenses/${r.id}`}>
                         Details
                       </Link>
                     </td>

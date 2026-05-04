@@ -1,8 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import type { InstallationFullRow, LicenseFullRow } from "@/lib/license-admin-data";
+import { getAdminPathPrefix } from "@/lib/admin-url";
 
 function fmtDate(iso: string | null | undefined): string {
   if (!iso) {
@@ -133,7 +135,7 @@ export function AdminLicenseDetailClient(props: {
   return (
     <div>
       <p className="form-hint" style={{ marginBottom: 18 }}>
-        <a href="/admin">← Terug naar overzicht</a>
+        <Link href={getAdminPathPrefix()}>← Terug naar overzicht</Link>
       </p>
 
       <div className="data-card" style={{ marginBottom: 22 }}>
