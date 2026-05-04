@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { sendDemoRequestEmails } from "@/lib/demo-request-emails";
 import { validateDemoRequest } from "@/lib/demo-request";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, "");
@@ -65,6 +66,10 @@ export async function POST(request: Request) {
       { status: 502 },
     );
   }
+
+  await sendDemoRequestEmails(parsed.value).catch((err) => {
+    console.error("sendDemoRequestEmails unexpected error", err);
+  });
 
   return NextResponse.json({ ok: true });
 }
