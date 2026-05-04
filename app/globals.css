@@ -893,3 +893,155 @@ h2 {
     flex-direction: column;
   }
 }
+
+/* —— Admin & licentieportaal —— */
+.app-shell {
+  min-height: 100vh;
+  padding: 28px 24px 64px;
+}
+
+.app-shell-inner {
+  max-width: var(--layout-max);
+  margin: 0 auto;
+}
+
+.app-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding: 12px 18px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(2, 6, 23, 0.75);
+  backdrop-filter: blur(14px);
+}
+
+.app-nav a {
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 0.88rem;
+}
+
+.app-nav a:hover {
+  color: var(--text);
+}
+
+.app-nav strong {
+  letter-spacing: -0.03em;
+}
+
+.data-card {
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: var(--panel-strong);
+  padding: clamp(20px, 3vw, 28px);
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.25);
+}
+
+.data-table-wrap {
+  overflow-x: auto;
+  margin-top: 16px;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.data-table th,
+.data-table td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+.data-table th {
+  color: var(--muted);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.72rem;
+}
+
+.data-table tr:last-child td {
+  border-bottom: none;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.badge-ok {
+  border: 1px solid rgba(33, 243, 107, 0.35);
+  color: var(--green);
+  background: rgba(33, 243, 107, 0.08);
+}
+
+.badge-warn {
+  border: 1px solid rgba(250, 204, 21, 0.35);
+  color: #facc15;
+  background: rgba(250, 204, 21, 0.08);
+}
+
+.badge-bad {
+  border: 1px solid rgba(248, 113, 113, 0.35);
+  color: #fca5a5;
+  background: rgba(248, 113, 113, 0.1);
+}
+
+.form-stack {
+  display: grid;
+  gap: 14px;
+  max-width: 520px;
+}
+
+.form-stack label {
+  display: grid;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #b8c5d7;
+}
+
+.form-stack input,
+.form-stack select,
+.form-stack textarea {
+  padding: 11px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(2, 6, 23, 0.65);
+  color: var(--text);
+}
+
+.form-stack textarea {
+  min-height: 88px;
+  resize: vertical;
+}
+
+.form-hint {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.form-error {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #fca5a5;
+}
+
+.portal-result {
+  margin-top: 22px;
+}

@@ -8,6 +8,7 @@ export type LicenseRow = {
   valid_until: string | null;
   revoked_at: string | null;
   plan: string;
+  owner_email: string | null;
 };
 
 export type LicenseInvalidReason =
@@ -101,7 +102,7 @@ export async function fetchLicenseByKey(licenseKey: string): Promise<
 
   const enc = encodeURIComponent(licenseKey);
   const result = await restGet<LicenseRow[]>(
-    `licenses?license_key=eq.${enc}&select=id,license_key,organization_label,max_activations,valid_until,revoked_at,plan&limit=1`,
+    `licenses?license_key=eq.${enc}&select=id,license_key,organization_label,max_activations,valid_until,revoked_at,plan,owner_email&limit=1`,
   );
 
   if (!result.ok) {

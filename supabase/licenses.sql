@@ -12,6 +12,7 @@ create table if not exists public.licenses (
   revoked_at timestamptz,
   plan text not null default 'standard',
   notes text,
+  owner_email text,
   constraint licenses_license_key_key unique (license_key),
   constraint licenses_max_activations_check check (max_activations >= 1 and max_activations <= 500),
   constraint licenses_plan_check check (plan in ('trial', 'standard', 'club', 'enterprise'))
@@ -37,6 +38,13 @@ alter table public.license_installations enable row level security;
 
 -- Geen policies: anon/authenticated krijgen geen directe tabeltoegang; service_role bypassed RLS.
 
+-- Bestaande database: kolom voor klantportaal (e-mail moet matchen om status te tonen).
+alter table public.licenses add column if not exists owner_email text;
+
+create index if not exists licenses_owner_email_lower_idx
+on public.licenses (lower(owner_email))
+where owner_email is not null;
+
 -- Voorbeeld: nieuwe licentie (pas sleutel en label aan)
--- insert into public.licenses (license_key, organization_label, max_activations, valid_until, plan)
--- values ('DEMO-ARENA-001', 'Testclub', 3, null, 'trial');
+-- insert into public.licenses (license_key, organization_label, owner_email, max_activations, valid_until, plan)
+-- values ('DEMO-ARENA-001', 'Testclub', 'klant@voorbeeld.be', 3, null, 'trial');

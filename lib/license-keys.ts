@@ -24,8 +24,12 @@ export const licenseActivateBodySchema = z.object({
   deviceLabel: z.string().trim().max(120).optional(),
 });
 
-export type LicenseCheckBody = z.infer<typeof licenseCheckBodySchema>;
-export type LicenseActivateBody = z.infer<typeof licenseActivateBodySchema>;
+export const licensePortalBodySchema = z.object({
+  licenseKey: licenseKeySchema,
+  ownerEmail: z.string().trim().toLowerCase().email(),
+});
+
+export type LicensePortalBody = z.infer<typeof licensePortalBodySchema>;
 
 export function normalizeLicenseKey(key: string): string {
   return key.trim().toUpperCase();
