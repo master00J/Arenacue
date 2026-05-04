@@ -1,7 +1,8 @@
 /**
  * Vult `public/downloads/Stadium-Scoreboard.exe` vóór `next build`.
  * 1) `PORTABLE_EXE_FETCH_URL` — directe HTTPS-URL (aanbevolen op Vercel; .exe >100 MB past niet in Git).
- * 2) Kopie uit monorepo: `../dist/Stadium-Scoreboard.exe` na `npm run electron:build` in de scoreboard-root.
+ * 2) Kopie uit monorepo (in volgorde): `../dist-latest/Stadium-Scoreboard.exe` (jullie “laatste build”),
+ *    anders `../dist/Stadium-Scoreboard.exe`.
  */
 import fs from "fs";
 import path from "path";
@@ -9,9 +10,13 @@ import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.join(__dirname, "..", "..");
-const localPortable = path.join(repoRoot, "dist", "Stadium-Scoreboard.exe");
+const portableName = "Stadium-Scoreboard.exe";
+const localPortableCandidates = [
+  path.join(repoRoot, "dist-latest", portableName),
+  path.join(repoRoot, "dist", portableName),
+];
 const destDir = path.join(__dirname, "..", "public", "downloads");
-const dest = path.join(destDir, "Stadium-Scoreboard.exe");
+const dest = path.join(destDir, portableName);
 
 const MIN_BYTES = 50 * 1024 * 1024;
 
@@ -30,18 +35,22 @@ async function fetchToFile(url) {
 }
 
 function copyIfExists() {
-  if (!fs.existsSync(localPortable)) {
-    return false;
+  for (const src of localPortableCandidates) {
+    if (!fs.existsSync(src)) {
+      continue;
+    }
+    const st = fs.statSync(src);
+    if (st.size < MIN_BYTES) {
+      console.warn(`[ensure-portable] ${src} lijkt te klein, volgende bron proberen.`);
+      continue;
+    }
+    fs.mkdirSync(destDir, { recursive: true });
+    fs.copyFileSync(src, dest);
+    const label = src.includes(`${path.sep}dist-latest${path.sep}`) ? "dist-latest" : "dist";
+    console.log(`[ensure-portable] gekopieerd (${Math.round(st.size / 1024 / 1024)} MB) van ${label}/`);
+    return true;
   }
-  const st = fs.statSync(localPortable);
-  if (st.size < MIN_BYTES) {
-    console.warn("[ensure-portable] lokale .exe lijkt te klein, overslaan.");
-    return false;
-  }
-  fs.mkdirSync(destDir, { recursive: true });
-  fs.copyFileSync(localPortable, dest);
-  console.log(`[ensure-portable] gekopieerd (${Math.round(st.size / 1024 / 1024)} MB) van dist/`);
-  return true;
+  return false;
 }
 
 async function main() {
@@ -69,7 +78,7 @@ async function main() {
   }
 
   console.warn(
-    "[ensure-portable] Geen portable .exe: zet PORTABLE_EXE_FETCH_URL op Vercel, of bouw lokaal in de scoreboard-map (`npm run electron:build`) en run `npm run build` opnieuw vanaf Website.",
+    "[ensure-portable] Geen portable .exe: zet PORTABLE_EXE_FETCH_URL op Vercel, of zet Stadium-Scoreboard.exe in scoreboard/dist-latest/ (of dist/) en run `npm run build` opnieuw vanaf Website.",
   );
 }
 
