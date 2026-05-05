@@ -8,6 +8,7 @@ export function LegalFooter() {
       <span>© {year} ArenaCue</span>
       <span className="legal-footer-links">
         <Link href="/">Home</Link>
+        <Link href="/functies">Functies</Link>
         <Link href="/licentie">Licentie</Link>
         <Link href="/changelog">Changelog</Link>
         <Link href="/privacy">Privacy</Link>

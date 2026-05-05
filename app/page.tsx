@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { DemoRequestForm } from "@/components/demo-request-form";
 import { CookieSettingsTrigger } from "@/components/cookie-settings-trigger";
 import { homePageMetadata } from "@/lib/seo";
@@ -60,6 +61,7 @@ export default function Home() {
           </a>
           <nav aria-label="Hoofdnavigatie">
             <a href="#features">Features</a>
+            <Link href="/functies">Alle functies</Link>
             <a href="#software">Software</a>
             <a href="#updates">Updates</a>
             <a href="/changelog">Changelog</a>
@@ -89,9 +91,9 @@ export default function Home() {
                 Start met ArenaCue
                 <span>→</span>
               </a>
-              <a className="secondary-button" href="#software">
-                Bekijk software
-              </a>
+              <Link className="secondary-button" href="/functies">
+                Alle functies
+              </Link>
             </div>
             <dl className="trust-row" aria-label="Belangrijkste voordelen">
               <div>
@@ -168,6 +170,11 @@ export default function Home() {
             </article>
           ))}
         </div>
+        <p className="features-see-all">
+          <Link href="/functies" className="secondary-button">
+            Uitgebreide functionaliteit →
+          </Link>
+        </p>
       </section>
 
       <section className="split-section" id="software">
@@ -261,6 +268,7 @@ export default function Home() {
         <span>© {new Date().getFullYear()} ArenaCue</span>
         <span>Stadium Scoreboard & Display Control</span>
         <span className="footer-links">
+          <a href="/functies">Functies</a>
           <a href="/licentie">Licentie</a>
           <a href="/changelog">Changelog</a>
           <a href="/privacy">Privacy</a>

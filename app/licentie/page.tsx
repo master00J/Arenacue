@@ -29,6 +29,7 @@ export default function LicentiePage() {
         <nav className="app-nav" style={{ marginBottom: 22 }}>
           <strong>ArenaCue</strong>
           <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
+            <Link href="/functies">Functies</Link>
             <Link href="/">Home</Link>
             <Link href="/#contact">Demo</Link>
           </div>

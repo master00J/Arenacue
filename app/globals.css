@@ -1401,3 +1401,85 @@ h2 {
     margin-left: 4px;
   }
 }
+
+/* —— Functies (diepte-pagina) —— */
+.features-deep-page {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 42px 24px 86px;
+}
+
+.features-deep-brand {
+  display: inline-flex;
+}
+
+.features-deep-card {
+  margin-top: 28px;
+}
+
+.features-deep-lead {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.78;
+  font-size: 1.02rem;
+}
+
+.features-deep-lead.tight {
+  font-size: 0.98rem;
+}
+
+.features-deep-section {
+  margin-top: 38px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+
+.features-deep-section:first-of-type {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 28px;
+}
+
+.features-deep-section h2 {
+  margin: 0 0 14px;
+  font-size: clamp(1.35rem, 2.6vw, 1.75rem);
+  letter-spacing: -0.035em;
+  color: var(--text);
+}
+
+.features-deep-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--muted);
+  line-height: 1.72;
+}
+
+.features-deep-list li {
+  margin-bottom: 12px;
+}
+
+.features-deep-list strong {
+  color: #d8e6f6;
+}
+
+.features-deep-list a {
+  color: var(--cyan);
+}
+
+.features-cta-row {
+  margin-top: 22px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.features-see-all {
+  margin: 28px 0 0;
+  text-align: center;
+}
+
+.features-see-all .secondary-button {
+  display: inline-flex;
+}
+
