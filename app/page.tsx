@@ -65,9 +65,17 @@ export default function Home() {
             <a href="#software">Software</a>
             <a href="#updates">Updates</a>
             <a href="/changelog">Changelog</a>
+            <Link href="/portal">Klantportaal</Link>
             <a href="#contact">Demo</a>
           </nav>
-          <a className="nav-cta" href="#contact">Boek demo</a>
+          <div className="nav-trailing">
+            <Link href="/portal" className="nav-portal-mobile-only">
+              Klantportaal
+            </Link>
+            <a className="nav-cta" href="#contact">
+              Boek demo
+            </a>
+          </div>
         </header>
 
         <div className="hero-grid" id="top">
@@ -93,6 +101,9 @@ export default function Home() {
               </a>
               <Link className="secondary-button" href="/functies">
                 Alle functies
+              </Link>
+              <Link className="secondary-button" href="/portal">
+                Klantportaal — inloggen
               </Link>
             </div>
             <dl className="trust-row" aria-label="Belangrijkste voordelen">

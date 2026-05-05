@@ -151,6 +151,36 @@ main {
   color: var(--text);
 }
 
+/** Op smalle schermen is het hoofdmenu verborgen — deze link blijft zichtbaar voor klanten. */
+.nav-portal-mobile-only {
+  display: none;
+  align-items: center;
+  padding: 9px 14px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--text);
+  border: 1px solid rgba(125, 211, 252, 0.38);
+  background: rgba(15, 23, 42, 0.55);
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.nav-portal-mobile-only:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  transform: translateY(-2px);
+}
+
+.nav-trailing {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
 .nav-cta,
 .primary-button,
 .secondary-button {
@@ -791,6 +821,14 @@ h2 {
     display: none;
   }
 
+  .nav-trailing {
+    margin-left: auto;
+  }
+
+  .nav-portal-mobile-only {
+    display: inline-flex;
+  }
+
   .hero-grid,
   .split-section,
   .updates-card,
@@ -837,6 +875,11 @@ h2 {
   .brand small,
   .nav-cta {
     display: none;
+  }
+
+  .nav-portal-mobile-only {
+    font-size: 0.8rem;
+    padding: 8px 11px;
   }
 
   .hero-copy h1 {

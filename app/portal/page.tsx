@@ -94,7 +94,9 @@ export default async function PortalPage(props: { searchParams?: SearchParams })
         <div className="data-card" style={{ marginBottom: 22 }}>
           <h1 style={{ margin: "0 0 8px", fontSize: "1.55rem", letterSpacing: "-0.03em" }}>Klantportaal</h1>
           <p className="form-hint" style={{ margin: 0 }}>
-            Inloggen met je licentie-e-mail of — als je snel iets wilt nakijken — direct opzoeken met sleutel en e-mail.
+            <strong>Inloggen voor klanten:</strong> vul hieronder het e-mailadres in dat bij je licentie hoort — je
+            ontvangt een eenmalige loginlink (geen wachtwoord). Of gebruik direct het formulier met sleutel + e-mail als
+            je snel iets wilt nakijken.
           </p>
         </div>
 
