@@ -728,6 +728,37 @@ h2 {
   opacity: 0.72;
 }
 
+.demo-policy-note {
+  margin: 0;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(125, 211, 252, 0.22);
+  background: rgba(0, 229, 255, 0.05);
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.demo-policy-note > strong {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--text);
+  font-size: 0.88rem;
+}
+
+.demo-policy-note ul {
+  margin: 10px 0 0;
+  padding-left: 1.15rem;
+}
+
+.demo-policy-note li {
+  margin: 6px 0;
+}
+
+.demo-policy-note strong {
+  color: var(--text);
+}
+
 .honeypot {
   position: absolute;
   left: -9999px;

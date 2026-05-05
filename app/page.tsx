@@ -251,7 +251,8 @@ export default function Home() {
           <h2>Klaar om ArenaCue in je stadion of sportclub te gebruiken?</h2>
           <p>
             Plan een demo, bespreek je schermopstelling en ontvang de juiste
-            download voor je club.
+            download voor je club. Demo&apos;s: één aanvraag per e-mail en één demo per apparaat; daarna kan een
+            volledige licentie wél op hetzelfde toestel.
           </p>
         </div>
         <div className="contact-stack">
