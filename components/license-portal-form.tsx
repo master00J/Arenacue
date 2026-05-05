@@ -5,6 +5,7 @@ import { useState } from "react";
 type PortalLicense = {
   organizationLabel: string;
   plan: string;
+  planLabel?: string;
   validUntil: string | null;
   status: "active" | "revoked" | "expired";
   maxActivations: number;
@@ -121,7 +122,7 @@ export function LicensePortalForm({
             <span className={`badge ${statusLabel(data.status).cls}`}>{statusLabel(data.status).text}</span>
           </div>
           <p className="form-hint" style={{ marginBottom: 16 }}>
-            Plan: <strong style={{ color: "var(--text)" }}>{data.plan}</strong>
+            Plan: <strong style={{ color: "var(--text)" }}>{data.planLabel?.trim() || data.plan}</strong>
             {" · "}
             Installaties:{" "}
             <strong style={{ color: "var(--text)" }}>

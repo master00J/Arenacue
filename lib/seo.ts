@@ -7,6 +7,8 @@ export const SITE_NAME = "ArenaCue";
 export const SITE_KEYWORDS = [
   "ArenaCue",
   "scoreboard software",
+  "LED boarding",
+  "perimeterscherm",
   "stadionscoreboard",
   "stadiondisplay",
   "voetbal scorebord",
@@ -68,9 +70,9 @@ export function pageMetadata(opts: {
 
 export function homePageMetadata(): Metadata {
   const url = absoluteUrl("/");
-  const titleAbsolute = "ArenaCue | Stadium Scoreboard & Display Control";
+  const titleAbsolute = "ArenaCue | Scoreboard, LED boarding & Display Control";
   const description =
-    "ArenaCue is professionele Windows-software voor live scoreboards, sponsorrotatie, matchstatus en stadiondisplay. Lokaal, snel en betrouwbaar voor clubs en stadions.";
+    "ArenaCue is professionele Windows-software voor live scoreboards, LED perimeter/tribune-output, sponsorrotatie en stadiondisplay. Lokaal, snel en betrouwbaar voor clubs en stadions.";
   return {
     title: { absolute: titleAbsolute },
     description,
@@ -84,7 +86,7 @@ export function homePageMetadata(): Metadata {
     openGraph: {
       title: titleAbsolute,
       description:
-        "Control every moment. Display every detail. Professionele scoreboardsoftware voor Belgische sportclubs en stadions.",
+        "Control every moment. Display every detail. Scoreboard- en LED-boardingsoftware voor Belgische sportclubs en stadions.",
       url,
       siteName: SITE_NAME,
       locale: "nl_BE",
@@ -92,7 +94,7 @@ export function homePageMetadata(): Metadata {
       images: [
         {
           url: "/assets/arenacue-icon.png",
-          alt: `${SITE_NAME} — stadium scoreboard software voor Windows`,
+          alt: `${SITE_NAME} — scoreboard- en LED-boardingsoftware voor Windows`,
         },
       ],
     },
@@ -100,7 +102,7 @@ export function homePageMetadata(): Metadata {
       card: "summary_large_image",
       title: titleAbsolute,
       description:
-        "Professionele Windows-software voor scoreboards, sponsorrotatie en stadionvisuals voor clubs en venues.",
+        "Professionele Windows-software voor scoreboards, LED boarding, sponsorrotatie en stadionvisuals.",
       images: ["/assets/arenacue-icon.png"],
     },
   };

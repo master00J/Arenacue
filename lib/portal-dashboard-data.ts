@@ -6,7 +6,7 @@ import {
 } from "@/lib/license-admin-data";
 import { getSupabaseAdminHeaders } from "@/lib/supabase-admin";
 import { toPublicLicenseSnapshot } from "@/lib/license-plans";
-import { portalDownloadLabel, resolvePortalDownloadUrl } from "@/lib/portal-download-url";
+import { portalDownloadLabel, portalLedboardingDownloadLabel, resolvePortalDownloadUrl, sanitizePortalDownloadUrl } from "@/lib/portal-download-url";
 
 export type PortalInstallationView = {
   deviceLabel: string;
@@ -27,6 +27,8 @@ export type PortalLicenseCardView = {
   usedActivations: number;
   downloadUrl: string | null;
   downloadLabel: string | null;
+  ledboardingDownloadUrl: string | null;
+  ledboardingDownloadLabel: string | null;
   installations: PortalInstallationView[];
 };
 
@@ -87,6 +89,11 @@ export async function loadPortalLicenseCardsForOwnerEmail(
           )
         : null;
 
+    const ledboardingDownloadUrl =
+      status === "active"
+        ? sanitizePortalDownloadUrl(process.env.NEXT_PUBLIC_PORTAL_LEDBOARDING_DOWNLOAD_URL)
+        : null;
+
     cards.push({
       licenseKey: row.license_key,
       organizationLabel: snap.organizationLabel,
@@ -99,6 +106,8 @@ export async function loadPortalLicenseCardsForOwnerEmail(
       usedActivations: installs.length,
       downloadUrl,
       downloadLabel: downloadUrl ? portalDownloadLabel() : null,
+      ledboardingDownloadUrl,
+      ledboardingDownloadLabel: ledboardingDownloadUrl ? portalLedboardingDownloadLabel() : null,
       installations: mapInstallations(installs),
     });
   }
