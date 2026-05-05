@@ -3,6 +3,11 @@ import { getSupabaseAdminHeaders } from "@/lib/supabase-admin";
 /** Marker in `licenses.notes` voor automatisch uitgegeven website-demo (`trial`). */
 export const WEBSITE_DEMO_LICENSE_NOTE = "website_demo";
 
+export function isWebsiteDemoLicense(row: { plan: string; notes: string | null | undefined }): boolean {
+  const n = row.notes ?? null;
+  return row.plan === "trial" && n === WEBSITE_DEMO_LICENSE_NOTE;
+}
+
 export type LicenseFullRow = {
   id: string;
   created_at: string;
@@ -217,4 +222,58 @@ export async function adminDeleteInstallation(
 ): Promise<{ ok: true } | { ok: false; status: number; text: string }> {
   const enc = encodeURIComponent(installationId);
   return restDelete(`license_installations?id=eq.${enc}`);
+}
+
+/** True als er ooit een website-demo-licentie voor dit adres bestaat (ook verlopen). */
+export async function adminAnyWebsiteDemoLicenseForOwnerEmail(email: string): Promise<boolean | null> {
+  const enc = encodeURIComponent(email.trim().toLowerCase());
+  const noteEnc = encodeURIComponent(WEBSITE_DEMO_LICENSE_NOTE);
+  const r = await restGet<{ id: string }[]>(
+    `licenses?owner_email=eq.${enc}&plan=eq.trial&notes=eq.${noteEnc}&select=id&limit=1`,
+  );
+  if (!r.ok) {
+    return null;
+  }
+  return r.data.length > 0;
+}
+
+/** True als er al een demo-aanvraag met dit e-mailadres is opgeslagen. */
+export async function adminDemoRequestExistsForEmail(email: string): Promise<boolean | null> {
+  const enc = encodeURIComponent(email.trim().toLowerCase());
+  const r = await restGet<{ id: string }[]>(`demo_requests?email=eq.${enc}&select=id&limit=1`);
+  if (!r.ok) {
+    return null;
+  }
+  return r.data.length > 0;
+}
+
+/**
+ * True als dit apparaat al aan een ánder trial gekoppeld was dan `currentLicenseId`,
+ * en dat een website-demo was — dan geen tweede demo op hetzelfde toestel.
+ */
+export async function adminMachineHasOtherWebsiteDemoInstallation(
+  machineId: string,
+  currentLicenseId: string,
+): Promise<boolean | null> {
+  const encM = encodeURIComponent(machineId.trim());
+  const r = await restGet<{ license_id: string }[]>(
+    `license_installations?machine_id=eq.${encM}&select=license_id`,
+  );
+  if (!r.ok) {
+    return null;
+  }
+  const otherIds = [
+    ...new Set(r.data.map((x) => x.license_id).filter((id) => id && id !== currentLicenseId)),
+  ];
+  if (otherIds.length === 0) {
+    return false;
+  }
+  const inList = otherIds.map((id) => encodeURIComponent(id)).join(",");
+  const lic = await restGet<Pick<LicenseFullRow, "id" | "plan" | "notes">[]>(
+    `licenses?id=in.(${inList})&select=id,plan,notes`,
+  );
+  if (!lic.ok) {
+    return null;
+  }
+  return lic.data.some((row) => isWebsiteDemoLicense(row));
 }
