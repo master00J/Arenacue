@@ -1,6 +1,10 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { DemoRequestForm } from "@/components/demo-request-form";
 import { CookieSettingsTrigger } from "@/components/cookie-settings-trigger";
+import { homePageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = homePageMetadata();
 
 const features = [
   {

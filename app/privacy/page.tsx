@@ -1,16 +1,26 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { LegalFooter } from "@/components/legal-footer";
+import { SeoBreadcrumbJsonLd } from "@/components/seo-breadcrumb-json-ld";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Privacy | ArenaCue",
+export const metadata: Metadata = pageMetadata({
+  segmentTitle: "Privacy",
   description:
     "Privacyverklaring, cookies en gegevensverwerking voor ArenaCue demo-aanvragen, licentieportal en website.",
-};
+  path: "/privacy",
+  keywordsExtra: ["AVG", "GDPR", "cookies", "gegevensbescherming"],
+});
 
 export default function PrivacyPage() {
   return (
     <main className="legal-page">
+      <SeoBreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Privacy", path: "/privacy" },
+        ]}
+      />
       <a className="brand" href="/">
         <Image
           src="/assets/arenacue-icon.png"

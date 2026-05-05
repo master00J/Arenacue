@@ -2,12 +2,18 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { LegalFooter } from "@/components/legal-footer";
+import { SeoBreadcrumbJsonLd } from "@/components/seo-breadcrumb-json-ld";
 import { getCustomerChangelog } from "@/lib/customer-changelog";
+import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Changelog | ArenaCue",
-  description:
-    "Overzicht van klantrelevante updates voor ArenaCue-software en het licentieportaal.",
+  ...pageMetadata({
+    segmentTitle: "Changelog",
+    description:
+      "Overzicht van klantrelevante updates voor ArenaCue-software en het licentieportaal.",
+    path: "/changelog",
+    keywordsExtra: ["release notes", "updates ArenaCue"],
+  }),
   robots: { index: true, follow: true },
 };
 
@@ -26,6 +32,12 @@ export default function ChangelogPage() {
 
   return (
     <main className="legal-page">
+      <SeoBreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Changelog", path: "/changelog" },
+        ]}
+      />
       <a className="brand" href="/">
         <Image
           src="/assets/arenacue-icon.png"

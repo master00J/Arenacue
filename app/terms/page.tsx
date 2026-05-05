@@ -1,15 +1,26 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { LegalFooter } from "@/components/legal-footer";
+import { SeoBreadcrumbJsonLd } from "@/components/seo-breadcrumb-json-ld";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Voorwaarden | ArenaCue",
-  description: "Algemene product- en websitevoorwaarden voor ArenaCue.",
-};
+export const metadata: Metadata = pageMetadata({
+  segmentTitle: "Voorwaarden",
+  description:
+    "Algemene product- en websitevoorwaarden voor ArenaCue scoreboardsoftware en het gebruik van deze site.",
+  path: "/terms",
+  keywordsExtra: ["algemene voorwaarden", "gebruiksvoorwaarden"],
+});
 
 export default function TermsPage() {
   return (
     <main className="legal-page">
+      <SeoBreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Voorwaarden", path: "/terms" },
+        ]}
+      />
       <a className="brand" href="/">
         <Image
           src="/assets/arenacue-icon.png"
