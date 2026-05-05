@@ -36,8 +36,4 @@ on public.demo_requests (created_at desc);
 create index if not exists demo_requests_status_idx
 on public.demo_requests (status);
 
--- Maximaal één demo-aanvraag per e-mailadres (bestaande duplicaten eerst opschonen vóór je dit draait).
-create unique index if not exists demo_requests_email_lower_uidx
-on public.demo_requests (lower(email));
-
 -- Licenties: zie ook licenses.sql (tabellen licenses + license_installations).

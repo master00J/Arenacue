@@ -5,7 +5,6 @@ import {
   touchInstallationLastSeen,
 } from "@/lib/license-server";
 import { licenseCheckBodySchema, normalizeLicenseKey } from "@/lib/license-keys";
-import { toPublicLicenseSnapshot } from "@/lib/license-plans";
 
 const cors = {
   "Access-Control-Allow-Origin": "*",
@@ -39,7 +38,7 @@ export async function POST(request: Request) {
   const licenseKey = normalizeLicenseKey(parsed.data.licenseKey);
   const { machineId } = parsed.data;
 
-  const lic = await fetchLicenseByKey(licenseKey, { machineId });
+  const lic = await fetchLicenseByKey(licenseKey);
   if (!lic.ok) {
     if (lic.reason === "not_configured") {
       return NextResponse.json(
@@ -58,8 +57,6 @@ export async function POST(request: Request) {
       unknown_key: "Onbekende licentiesleutel.",
       revoked: "Deze licentie is ingetrokken.",
       expired: "Deze licentie is verlopen.",
-      demo_device_exhausted:
-        "Op dit apparaat werd eerder al een ArenaCue-demo gebruikt. Een tweede demo op dit toestel is niet mogelijk. Neem contact op met ArenaCue voor een licentie.",
     };
     return NextResponse.json(
       { ok: false, reason: lic.reason, message: map[lic.reason] ?? "Licentie ongeldig." },
@@ -83,7 +80,11 @@ export async function POST(request: Request) {
     {
       ok: true,
       activated: Boolean(inst.row),
-      license: toPublicLicenseSnapshot(lic.row),
+      license: {
+        organizationLabel: lic.row.organization_label,
+        plan: lic.row.plan,
+        validUntil: lic.row.valid_until,
+      },
     },
     { headers: cors },
   );

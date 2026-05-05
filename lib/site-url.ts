@@ -1,6 +1,5 @@
 /**
- * Vaste openbare productiedomein — gebruik dit voor alle absolute URLs (SEO, sitemap, e-mail, magic links).
- * Geen env-override: voorkomt verkeerde hosts (.com, preview-URL’s per ongeluk in klantmails).
+ * Zelfde canonieke origin als de live Arenacue-site (kopie in scoreboard/Website).
  */
 export const CANONICAL_SITE_ORIGIN = "https://arenacue.be";
 

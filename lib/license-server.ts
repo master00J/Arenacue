@@ -1,7 +1,3 @@
-import {
-  adminMachineHasOtherWebsiteDemoInstallation,
-  isWebsiteDemoLicense,
-} from "@/lib/license-admin-data";
 import { getSupabaseAdminHeaders } from "@/lib/supabase-admin";
 
 export type LicenseRow = {
@@ -13,14 +9,12 @@ export type LicenseRow = {
   revoked_at: string | null;
   plan: string;
   owner_email: string | null;
-  notes: string | null;
 };
 
 export type LicenseInvalidReason =
   | "unknown_key"
   | "revoked"
   | "expired"
-  | "demo_device_exhausted"
   | "not_configured";
 
 export function evaluateLicenseRow(row: LicenseRow): { ok: true } | { ok: false; reason: LicenseInvalidReason } {
@@ -96,10 +90,7 @@ async function restPatch(
   return { ok: true };
 }
 
-export async function fetchLicenseByKey(
-  licenseKey: string,
-  opts?: { machineId?: string },
-): Promise<
+export async function fetchLicenseByKey(licenseKey: string): Promise<
   | { ok: true; row: LicenseRow }
   | { ok: false; reason: LicenseInvalidReason }
   | { ok: false; reason: "supabase_error"; status: number; text: string }
@@ -111,7 +102,7 @@ export async function fetchLicenseByKey(
 
   const enc = encodeURIComponent(licenseKey);
   const result = await restGet<LicenseRow[]>(
-    `licenses?license_key=eq.${enc}&select=id,license_key,organization_label,max_activations,valid_until,revoked_at,plan,owner_email,notes&limit=1`,
+    `licenses?license_key=eq.${enc}&select=id,license_key,organization_label,max_activations,valid_until,revoked_at,plan,owner_email&limit=1`,
   );
 
   if (!result.ok) {
@@ -126,26 +117,12 @@ export async function fetchLicenseByKey(
     return { ok: false, reason: "unknown_key" };
   }
 
-  const notesNormalized = row.notes ?? null;
-  const rowWithNotes: LicenseRow = { ...row, notes: notesNormalized };
-
-  const ev = evaluateLicenseRow(rowWithNotes);
+  const ev = evaluateLicenseRow(row);
   if (!ev.ok) {
     return { ok: false, reason: ev.reason };
   }
 
-  const mid = opts?.machineId?.trim();
-  if (mid && isWebsiteDemoLicense({ plan: rowWithNotes.plan, notes: rowWithNotes.notes })) {
-    const blocked = await adminMachineHasOtherWebsiteDemoInstallation(mid, rowWithNotes.id);
-    if (blocked === null) {
-      return { ok: false, reason: "supabase_error", status: 502, text: "demo_machine_gate" };
-    }
-    if (blocked) {
-      return { ok: false, reason: "demo_device_exhausted" };
-    }
-  }
-
-  return { ok: true, row: rowWithNotes };
+  return { ok: true, row };
 }
 
 type InstallationRow = { id: string; license_id: string; machine_id: string };

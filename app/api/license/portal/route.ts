@@ -5,8 +5,12 @@ import {
 } from "@/lib/license-admin-data";
 import { getSupabaseAdminHeaders } from "@/lib/supabase-admin";
 import { licensePortalBodySchema, normalizeLicenseKey } from "@/lib/license-keys";
-import { portalDownloadLabel, resolvePortalDownloadUrl } from "@/lib/portal-download-url";
-import { toPublicLicenseSnapshot } from "@/lib/license-plans";
+import {
+  portalDownloadLabel,
+  portalLedboardingDownloadLabel,
+  resolvePortalDownloadUrl,
+  sanitizePortalDownloadUrl,
+} from "@/lib/portal-download-url";
 
 const portalBody = licensePortalBodySchema;
 
@@ -109,18 +113,25 @@ export async function POST(request: Request) {
         )
       : null;
 
-  const snapshot = toPublicLicenseSnapshot(row);
+  const ledboardingDownloadUrl =
+    status === "active"
+      ? sanitizePortalDownloadUrl(process.env.NEXT_PUBLIC_PORTAL_LEDBOARDING_DOWNLOAD_URL)
+      : null;
 
   return NextResponse.json(
     {
       ok: true,
       license: {
-        ...snapshot,
+        organizationLabel: row.organization_label,
+        plan: row.plan,
+        validUntil: row.valid_until,
         status,
         maxActivations: row.max_activations,
         usedActivations: installs.length,
         downloadUrl,
         downloadLabel: downloadUrl ? portalDownloadLabel() : null,
+        ledboardingDownloadUrl,
+        ledboardingDownloadLabel: ledboardingDownloadUrl ? portalLedboardingDownloadLabel() : null,
         installations: installs.map((i) => ({
           deviceLabel: i.device_label || "—",
           machinePreview: machinePreview(i.machine_id),

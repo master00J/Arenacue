@@ -1,11 +1,5 @@
-import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { DemoRequestForm } from "@/components/demo-request-form";
-import { CookieSettingsTrigger } from "@/components/cookie-settings-trigger";
-import { homePageMetadata } from "@/lib/seo";
-
-export const metadata: Metadata = homePageMetadata();
 
 const features = [
   {
@@ -21,13 +15,17 @@ const features = [
     body: "Toon visuals fullscreen of naast het scorebord op een vaste 16:9 display-output.",
   },
   {
+    title: "LED boarding",
+    body: "Aparte ArenaCue-app voor perimeter- en tribuneschermen: zones, playlists en sponsorlogo's op een configureerbare pixelcanvas.",
+  },
+  {
     title: "Media & spelers",
     body: "Beheer teamlogo's, spelersvisuals, goalvideo's, wissels, kaarten en intro's lokaal.",
   },
 ];
 
 const workflow = [
-  "Installeer ArenaCue op de regie-laptop.",
+  "Installeer ArenaCue Scoreboard (en optioneel LED boarding) op de regie-laptop.",
   "Verbind het scherm of display-systeem via HDMI, capture of LAN.",
   "Maak teams, wedstrijd en sponsors aan.",
   "Bedien de volledige match live vanuit het control panel.",
@@ -56,26 +54,16 @@ export default function Home() {
             />
             <span>
               <strong>Arena<span>Cue</span></strong>
-              <small>Scoreboard & Display Control</small>
+              <small>Scoreboard, LED boarding &amp; Display Control</small>
             </span>
           </a>
           <nav aria-label="Hoofdnavigatie">
             <a href="#features">Features</a>
-            <Link href="/functies">Alle functies</Link>
             <a href="#software">Software</a>
             <a href="#updates">Updates</a>
-            <a href="/changelog">Changelog</a>
-            <Link href="/portal">Klantportaal</Link>
             <a href="#contact">Demo</a>
           </nav>
-          <div className="nav-trailing">
-            <Link href="/portal" className="nav-portal-mobile-only">
-              Klantportaal
-            </Link>
-            <a className="nav-cta" href="#contact">
-              Boek demo
-            </a>
-          </div>
+          <a className="nav-cta" href="#contact">Boek demo</a>
         </header>
 
         <div className="hero-grid" id="top">
@@ -99,12 +87,9 @@ export default function Home() {
                 Start met ArenaCue
                 <span>→</span>
               </a>
-              <Link className="secondary-button" href="/functies">
-                Alle functies
-              </Link>
-              <Link className="secondary-button" href="/portal">
-                Klantportaal — inloggen
-              </Link>
+              <a className="secondary-button" href="#software">
+                Bekijk software
+              </a>
             </div>
             <dl className="trust-row" aria-label="Belangrijkste voordelen">
               <div>
@@ -181,11 +166,6 @@ export default function Home() {
             </article>
           ))}
         </div>
-        <p className="features-see-all">
-          <Link href="/functies" className="secondary-button">
-            Uitgebreide functionaliteit →
-          </Link>
-        </p>
       </section>
 
       <section className="split-section" id="software">
@@ -193,7 +173,9 @@ export default function Home() {
           <p className="section-kicker">Software delivery</p>
           <h2>Downloadbaar, eenvoudig te installeren en klaar voor wedstrijddagen.</h2>
           <p>
-            ArenaCue wordt geleverd als Windows-installer of portable build.
+            ArenaCue wordt geleverd als Windows-installer of portable build voor het scoreboard;{" "}
+            <strong>ArenaCue LED boarding</strong> is een aparte download voor lint- en LED-schermen
+            (zelfde distributiepatroon).
             Clubs hoeven geen complexe serveromgeving op te zetten: installeren,
             wedstrijd aanmaken, display openen en starten.
           </p>
@@ -203,21 +185,37 @@ export default function Home() {
             ))}
           </ul>
         </div>
-        <div className="download-card">
-          <Image
-            src="/assets/arenacue-icon.png"
-            alt=""
-            width={96}
-            height={96}
-          />
-          <h3>ArenaCue for Windows</h3>
-          <p>
-            Installer en portable versie voor clubs die snel willen starten met
-            scoreboard- en sponsorcontrole.
-          </p>
-          <a className="primary-button full" href="#contact">
-            Vraag download aan
-          </a>
+        <div className="download-cards-stack">
+          <div className="download-card">
+            <Image
+              src="/assets/arenacue-icon.png"
+              alt=""
+              width={96}
+              height={96}
+            />
+            <h3>ArenaCue Scoreboard</h3>
+            <p>
+              Installer en portable versie voor scoreboard-, sponsor- en displaycontrole tijdens de match.
+            </p>
+            <a className="primary-button full" href="#contact">
+              Vraag download aan
+            </a>
+          </div>
+          <div className="download-card">
+            <Image
+              src="/assets/arenacue-icon.png"
+              alt=""
+              width={96}
+              height={96}
+            />
+            <h3>ArenaCue LED boarding</h3>
+            <p>
+              Losstaande app voor perimeter/tribune-LED: zones, playlists en sponsors op pixelprecieze output.
+            </p>
+            <a className="primary-button full" href="#contact">
+              Vraag download aan
+            </a>
+          </div>
         </div>
       </section>
 
@@ -230,11 +228,6 @@ export default function Home() {
               Elke release kan voorzien worden van een duidelijke versie, korte
               changelog en downloadbare installer. Zo houden clubs eenvoudig bij
               welke ArenaCue-versie ze gebruiken.
-            </p>
-            <p className="updates-changelog-link">
-              <a className="secondary-button" href="/changelog">
-                Bekijk changelog voor clubs
-              </a>
             </p>
           </div>
           <ul className="check-list compact">
@@ -251,8 +244,7 @@ export default function Home() {
           <h2>Klaar om ArenaCue in je stadion of sportclub te gebruiken?</h2>
           <p>
             Plan een demo, bespreek je schermopstelling en ontvang de juiste
-            download voor je club. Demo&apos;s: één aanvraag per e-mail en één demo per apparaat; daarna kan een
-            volledige licentie wél op hetzelfde toestel.
+            download voor je club.
           </p>
         </div>
         <div className="contact-stack">
@@ -278,14 +270,11 @@ export default function Home() {
 
       <footer className="footer">
         <span>© {new Date().getFullYear()} ArenaCue</span>
-        <span>Stadium Scoreboard & Display Control</span>
+        <span>Scoreboard, LED boarding &amp; Display Control</span>
         <span className="footer-links">
-          <a href="/functies">Functies</a>
           <a href="/portal">Klantportaal</a>
-          <a href="/changelog">Changelog</a>
           <a href="/privacy">Privacy</a>
           <a href="/terms">Voorwaarden</a>
-          <CookieSettingsTrigger />
         </span>
       </footer>
     </main>

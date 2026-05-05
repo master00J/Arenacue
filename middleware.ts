@@ -13,12 +13,11 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(redirect, 307);
     }
   }
-
-  if (pathname === "/licentie" || pathname.startsWith("/licentie/")) {
-    const url = request.nextUrl.clone();
-    url.pathname = "/portal";
-    url.hash = "";
-    return NextResponse.redirect(url, 308);
+  if (pathname === "/downloads/ArenaCue-Ledboarding.exe") {
+    const redirect = process.env.DOWNLOAD_LEDBOARDING_EXE_REDIRECT_URL?.trim();
+    if (redirect && /^https:\/\//i.test(redirect)) {
+      return NextResponse.redirect(redirect, 307);
+    }
   }
 
   if (pathname.startsWith("/api")) {
