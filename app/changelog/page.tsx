@@ -47,8 +47,7 @@ export default function ChangelogPage() {
         <h1>Changelog</h1>
         <p className="changelog-intro">
           Hier tonen we wijzigingen die voor clubs en operators relevant zijn — nieuwe functies,
-          gedrag van sponsoring en display, het licentieportaal en de website. Technische
-          details voor ontwikkelaars horen niet thuis in dit overzicht.
+          gedrag van sponsoring en display, het licentieportaal en de website.
         </p>
         <p className="changelog-intro muted-link-wrap">
           Staat je versie niet vermeld? Open het{" "}
