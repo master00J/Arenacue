@@ -77,7 +77,7 @@ function autoReplyHtml(name: string, extras?: DemoRequestEmailExtras): string {
       <strong>Je tijdelijke demo-licentie</strong><br/><br/>
       Sleutel (kopieer in ArenaCue):<br/>
       <span style="font-family:ui-monospace,monospace;font-size:15px;letter-spacing:0.04em;">${escapeHtml(key)}</span>
-      ${extras.licenseReused ? `<br/><span style="font-size:12px;color:#555;">Dit is je bestaande demo-profiel voor dit e-mailadres.</span>` : ""}
+      ${extras?.licenseReused ? `<br/><span style="font-size:12px;color:#555;">Dit is je bestaande demo-profiel voor dit e-mailadres.</span>` : ""}
       ${portal ? `<br/><br/><a href="${escapeHtml(portal)}">Licentiestatus & download</a> — vul je sleutel en dit e-mailadres in.` : ""}
     </p>
     <p>Je kunt ArenaCue meteen installeren en activeren; we plannen daarnaast nog graag een persoonlijke demo met je in.</p>
@@ -107,7 +107,7 @@ function autoReplyText(name: string, extras?: DemoRequestEmailExtras): string {
     lines.push(
       "Je tijdelijke demo-licentiesleutel:",
       key,
-      extras.licenseReused ? "(bestaande demo voor dit e-mailadres)" : "",
+      extras?.licenseReused ? "(bestaande demo voor dit e-mailadres)" : "",
       portal ? `Licentiestatus & download: ${portal}` : "",
       "",
       "Installeer ArenaCue op Windows en plak deze sleutel bij activatie.",
