@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LicentiePortalClient } from "@/components/licentie-portal-client";
+import { LegalFooter } from "@/components/legal-footer";
 
 export const metadata: Metadata = {
   title: "Licentiestatus | ArenaCue",
@@ -20,6 +21,7 @@ export default function LicentiePage() {
           </div>
         </nav>
         <LicentiePortalClient />
+        <LegalFooter />
       </div>
     </main>
   );

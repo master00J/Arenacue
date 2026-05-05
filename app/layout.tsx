@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { getSiteUrl } from "@/lib/site-url";
+import { SiteShell } from "@/components/site-shell";
 import "./globals.css";
 
 const siteUrl = getSiteUrl();
@@ -49,7 +50,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="nl">
-      <body>{children}</body>
+      <body>
+        <SiteShell>{children}</SiteShell>
+      </body>
     </html>
   );
 }

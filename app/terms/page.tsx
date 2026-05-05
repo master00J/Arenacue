@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { LegalFooter } from "@/components/legal-footer";
 
 export const metadata: Metadata = {
   title: "Voorwaarden | ArenaCue",
@@ -50,12 +51,20 @@ export default function TermsPage() {
           overeengekomen.
         </p>
 
+        <h2>Cookies en privacy</h2>
+        <p>
+          Het gebruik van cookies en vergelijkbare technieken op deze website wordt beschreven in de{" "}
+          <a href="/privacy">privacyverklaring</a>. Via het cookiebanner en &quot;Cookie-instellingen&quot;
+          in de footer kun je je voorkeuren beheren.
+        </p>
+
         <h2>Contact</h2>
         <p>
           Voor vragen over voorwaarden of commerciële afspraken:{" "}
           <a href="mailto:info@arenacue.be">info@arenacue.be</a>.
         </p>
       </article>
+      <LegalFooter />
     </main>
   );
 }

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { DemoRequestForm } from "@/components/demo-request-form";
+import { CookieSettingsTrigger } from "@/components/cookie-settings-trigger";
 
 const features = [
   {
@@ -253,6 +254,7 @@ export default function Home() {
           <a href="/licentie">Licentie</a>
           <a href="/privacy">Privacy</a>
           <a href="/terms">Voorwaarden</a>
+          <CookieSettingsTrigger />
         </span>
       </footer>
     </main>
