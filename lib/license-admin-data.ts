@@ -1,5 +1,8 @@
 import { getSupabaseAdminHeaders } from "@/lib/supabase-admin";
 
+/** Marker in `licenses.notes` voor automatisch uitgegeven website-demo (`trial`). */
+export const WEBSITE_DEMO_LICENSE_NOTE = "website_demo";
+
 export type LicenseFullRow = {
   id: string;
   created_at: string;
@@ -22,6 +25,38 @@ export type InstallationFullRow = {
   activated_at: string;
   last_seen_at: string;
 };
+
+function licenseRowActiveNonExpired(row: LicenseFullRow): boolean {
+  if (row.revoked_at) {
+    return false;
+  }
+  if (!row.valid_until) {
+    return true;
+  }
+  const end = new Date(row.valid_until).getTime();
+  return Number.isFinite(end) && end > Date.now();
+}
+
+/** Herbruik website_demo trial-licenties die nog niet verlopen zijn (zelfde owner-email). */
+export async function adminFindActiveWebsiteDemoLicenseForOwnerEmail(
+  email: string,
+): Promise<LicenseFullRow | null> {
+  const normalized = email.trim().toLowerCase();
+  const enc = encodeURIComponent(normalized);
+  const noteEnc = encodeURIComponent(WEBSITE_DEMO_LICENSE_NOTE);
+  const r = await restGet<LicenseFullRow[]>(
+    `licenses?owner_email=eq.${enc}&plan=eq.trial&notes=eq.${noteEnc}&revoked_at=is.null&select=*&order=created_at.desc&limit=20`,
+  );
+  if (!r.ok) {
+    return null;
+  }
+  for (const row of r.data) {
+    if (licenseRowActiveNonExpired(row)) {
+      return row;
+    }
+  }
+  return null;
+}
 
 async function restGet<T>(path: string): Promise<{ ok: true; data: T } | { ok: false; status: number; text: string }> {
   const admin = getSupabaseAdminHeaders();
@@ -107,6 +142,20 @@ export async function adminGetLicenseByKey(licenseKey: string): Promise<LicenseF
 
 export async function adminListLicenses(): Promise<LicenseFullRow[] | null> {
   const r = await restGet<LicenseFullRow[]>("licenses?select=*&order=created_at.desc");
+  if (!r.ok) {
+    return null;
+  }
+  return r.data;
+}
+
+/** Alle licenties gekoppeld aan een klant-e-mail (klantportaal). */
+export async function adminListLicensesByOwnerEmail(
+  ownerEmailLower: string,
+): Promise<LicenseFullRow[] | null> {
+  const enc = encodeURIComponent(ownerEmailLower.trim().toLowerCase());
+  const r = await restGet<LicenseFullRow[]>(
+    `licenses?owner_email=eq.${enc}&select=*&order=created_at.desc`,
+  );
   if (!r.ok) {
     return null;
   }

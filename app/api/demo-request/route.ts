@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
-import { sendDemoRequestEmails } from "@/lib/demo-request-emails";
+import { provisionWebsiteDemoLicense } from "@/lib/demo-license-provision";
+import { sendDemoRequestEmails, type DemoRequestEmailExtras } from "@/lib/demo-request-emails";
 import { validateDemoRequest } from "@/lib/demo-request";
+import { getSiteUrl } from "@/lib/site-url";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, "");
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -67,7 +69,24 @@ export async function POST(request: Request) {
     );
   }
 
-  await sendDemoRequestEmails(parsed.value).catch((err) => {
+  let emailExtras: DemoRequestEmailExtras | undefined;
+  try {
+    const prov = await provisionWebsiteDemoLicense({
+      ownerEmail: parsed.value.email,
+      organizationLabel: parsed.value.club.trim() || parsed.value.name.trim(),
+    });
+    if (prov) {
+      emailExtras = {
+        licenseKey: prov.licenseKey,
+        portalUrl: `${getSiteUrl()}/portal`,
+        licenseReused: prov.reused,
+      };
+    }
+  } catch (err) {
+    console.error("provisionWebsiteDemoLicense unexpected error", err);
+  }
+
+  await sendDemoRequestEmails(parsed.value, emailExtras).catch((err) => {
     console.error("sendDemoRequestEmails unexpected error", err);
   });
 

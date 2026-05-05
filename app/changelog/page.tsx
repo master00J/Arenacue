@@ -63,7 +63,7 @@ export default function ChangelogPage() {
         </p>
         <p className="changelog-intro muted-link-wrap">
           Staat je versie niet vermeld? Open het{" "}
-          <Link href="/licentie">licentieportaal</Link> voor de actuele download. De desktopapp kan
+          <Link href="/portal">klantportaal</Link> voor de actuele download. De desktopapp kan
           automatisch controleren of er een nieuwere build beschikbaar is.
         </p>
 
@@ -95,7 +95,7 @@ export default function ChangelogPage() {
         )}
 
         <p className="changelog-footnote">
-          Wil je op de hoogte blijven van releases? Houd het licentieportaal in de gaten of{" "}
+          Wil je op de hoogte blijven van releases? Houd het klantportaal in de gaten of{" "}
           <a href="/#contact">vraag een demo aan</a> — we verwijzen je dan naar de juiste download.
         </p>
       </article>

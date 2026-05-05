@@ -71,7 +71,7 @@ export default function FunctiesPage() {
             </li>
             <li>
               <strong>Licentie:</strong> activatie en status via het{" "}
-              <Link href="/licentie">online licentieportaal</Link> van ArenaCue.
+              <Link href="/portal">online klantportaal</Link> van ArenaCue.
             </li>
           </ul>
         </section>
@@ -222,8 +222,8 @@ export default function FunctiesPage() {
             <Link className="secondary-button" href="/changelog">
               Bekijk changelog
             </Link>
-            <Link className="secondary-button" href="/licentie">
-              Licentieportaal
+            <Link className="secondary-button" href="/portal">
+              Klantportaal
             </Link>
           </div>
         </section>

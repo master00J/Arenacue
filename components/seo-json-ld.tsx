@@ -36,7 +36,7 @@ export function SeoJsonLd() {
       operatingSystem: "Windows",
       offers: {
         "@type": "Offer",
-        url: absoluteUrl("/licentie"),
+        url: absoluteUrl("/portal"),
         availability: "https://schema.org/OnlineOnly",
         seller: { "@id": `${rootUrl}#organization` },
       },

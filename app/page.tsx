@@ -269,7 +269,7 @@ export default function Home() {
         <span>Stadium Scoreboard & Display Control</span>
         <span className="footer-links">
           <a href="/functies">Functies</a>
-          <a href="/licentie">Licentie</a>
+          <a href="/portal">Klantportaal</a>
           <a href="/changelog">Changelog</a>
           <a href="/privacy">Privacy</a>
           <a href="/terms">Voorwaarden</a>

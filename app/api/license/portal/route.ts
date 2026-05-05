@@ -6,6 +6,7 @@ import {
 import { getSupabaseAdminHeaders } from "@/lib/supabase-admin";
 import { licensePortalBodySchema, normalizeLicenseKey } from "@/lib/license-keys";
 import { portalDownloadLabel, resolvePortalDownloadUrl } from "@/lib/portal-download-url";
+import { toPublicLicenseSnapshot } from "@/lib/license-plans";
 
 const portalBody = licensePortalBodySchema;
 
@@ -108,13 +109,13 @@ export async function POST(request: Request) {
         )
       : null;
 
+  const snapshot = toPublicLicenseSnapshot(row);
+
   return NextResponse.json(
     {
       ok: true,
       license: {
-        organizationLabel: row.organization_label,
-        plan: row.plan,
-        validUntil: row.valid_until,
+        ...snapshot,
         status,
         maxActivations: row.max_activations,
         usedActivations: installs.length,

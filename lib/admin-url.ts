@@ -4,6 +4,7 @@ const RESERVED = new Set(
     "_next",
     "static",
     "licentie",
+    "portal",
     "privacy",
     "terms",
     "manifest.webmanifest",

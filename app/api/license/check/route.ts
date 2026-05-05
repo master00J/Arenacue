@@ -5,6 +5,7 @@ import {
   touchInstallationLastSeen,
 } from "@/lib/license-server";
 import { licenseCheckBodySchema, normalizeLicenseKey } from "@/lib/license-keys";
+import { toPublicLicenseSnapshot } from "@/lib/license-plans";
 
 const cors = {
   "Access-Control-Allow-Origin": "*",
@@ -80,11 +81,7 @@ export async function POST(request: Request) {
     {
       ok: true,
       activated: Boolean(inst.row),
-      license: {
-        organizationLabel: lic.row.organization_label,
-        plan: lic.row.plan,
-        validUntil: lic.row.valid_until,
-      },
+      license: toPublicLicenseSnapshot(lic.row),
     },
     { headers: cors },
   );

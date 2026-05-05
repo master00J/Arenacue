@@ -7,6 +7,7 @@ import {
   touchInstallationLastSeen,
 } from "@/lib/license-server";
 import { licenseActivateBodySchema, normalizeLicenseKey } from "@/lib/license-keys";
+import { toPublicLicenseSnapshot } from "@/lib/license-plans";
 
 const cors = {
   "Access-Control-Allow-Origin": "*",
@@ -81,11 +82,7 @@ export async function POST(request: Request) {
       {
         ok: true,
         status: "already_activated",
-        license: {
-          organizationLabel: lic.row.organization_label,
-          plan: lic.row.plan,
-          validUntil: lic.row.valid_until,
-        },
+        license: toPublicLicenseSnapshot(lic.row),
       },
       { headers: cors },
     );
@@ -120,11 +117,7 @@ export async function POST(request: Request) {
           {
             ok: true,
             status: "already_activated",
-            license: {
-              organizationLabel: lic.row.organization_label,
-              plan: lic.row.plan,
-              validUntil: lic.row.valid_until,
-            },
+            license: toPublicLicenseSnapshot(lic.row),
           },
           { headers: cors },
         );
@@ -141,11 +134,7 @@ export async function POST(request: Request) {
     {
       ok: true,
       status: "activated",
-      license: {
-        organizationLabel: lic.row.organization_label,
-        plan: lic.row.plan,
-        validUntil: lic.row.valid_until,
-      },
+      license: toPublicLicenseSnapshot(lic.row),
     },
     { headers: cors },
   );
