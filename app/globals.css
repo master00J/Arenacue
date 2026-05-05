@@ -1284,3 +1284,120 @@ h2 {
     text-align: center;
   }
 }
+
+.updates-changelog-link {
+  margin: 18px 0 0;
+}
+
+/* —— Changelogpagina —— */
+.changelog-card h1 {
+  margin-bottom: 12px;
+}
+
+.changelog-intro {
+  margin: 0 0 12px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.changelog-intro:last-of-type {
+  margin-bottom: 28px;
+}
+
+.muted-link-wrap a {
+  color: var(--cyan);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.changelog-empty {
+  color: var(--muted);
+  padding: 24px 0;
+}
+
+.changelog-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin: 8px 0 32px;
+  padding: 0 0 0 22px;
+  border-left: 2px solid var(--line-strong);
+}
+
+.changelog-entry {
+  position: relative;
+}
+
+.changelog-entry::before {
+  content: "";
+  position: absolute;
+  left: -29px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--cyan), var(--blue));
+  box-shadow: 0 0 0 3px rgba(2, 6, 23, 0.95);
+}
+
+.changelog-entry-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.changelog-entry-meta time {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.changelog-version {
+  font-family: ui-monospace, monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(25, 216, 255, 0.35);
+  color: var(--cyan);
+  background: rgba(25, 216, 255, 0.08);
+}
+
+.changelog-entry h2 {
+  margin: 0 0 12px;
+  font-size: clamp(1.2rem, 2.4vw, 1.55rem);
+}
+
+.changelog-entry ul {
+  margin: 0;
+  padding-left: 1.15rem;
+}
+
+.changelog-entry li {
+  margin-bottom: 8px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.changelog-footnote {
+  margin: 0;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.changelog-footnote a {
+  color: var(--cyan);
+}
+
+@media (max-width: 980px) {
+  .changelog-timeline {
+    margin-left: 4px;
+  }
+}

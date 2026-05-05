@@ -58,6 +58,7 @@ export default function Home() {
             <a href="#features">Features</a>
             <a href="#software">Software</a>
             <a href="#updates">Updates</a>
+            <a href="/changelog">Changelog</a>
             <a href="#contact">Demo</a>
           </nav>
           <a className="nav-cta" href="#contact">Boek demo</a>
@@ -208,6 +209,11 @@ export default function Home() {
               changelog en downloadbare installer. Zo houden clubs eenvoudig bij
               welke ArenaCue-versie ze gebruiken.
             </p>
+            <p className="updates-changelog-link">
+              <a className="secondary-button" href="/changelog">
+                Bekijk changelog voor clubs
+              </a>
+            </p>
           </div>
           <ul className="check-list compact">
             {releaseItems.map((item) => (
@@ -252,6 +258,7 @@ export default function Home() {
         <span>Stadium Scoreboard & Display Control</span>
         <span className="footer-links">
           <a href="/licentie">Licentie</a>
+          <a href="/changelog">Changelog</a>
           <a href="/privacy">Privacy</a>
           <a href="/terms">Voorwaarden</a>
           <CookieSettingsTrigger />

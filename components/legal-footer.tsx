@@ -9,6 +9,7 @@ export function LegalFooter() {
       <span className="legal-footer-links">
         <Link href="/">Home</Link>
         <Link href="/licentie">Licentie</Link>
+        <Link href="/changelog">Changelog</Link>
         <Link href="/privacy">Privacy</Link>
         <Link href="/terms">Voorwaarden</Link>
         <CookieSettingsTrigger />
