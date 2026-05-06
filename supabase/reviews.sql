@@ -76,6 +76,7 @@ update public.reviews set quote = 'Geen reviewtekst opgegeven.' where quote is n
 alter table public.reviews alter column name set not null;
 alter table public.reviews alter column club set not null;
 alter table public.reviews alter column quote set not null;
+
 alter table public.reviews enable row level security;
 
 drop policy if exists "Anyone can submit reviews" on public.reviews;
