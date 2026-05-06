@@ -42,10 +42,10 @@ const workflow = [
 ];
 
 const releaseItems = [
-  "Windows installer + portable build (NSIS/portable)",
-  "Duidelijke versies en release notes",
-  "Downloadbare installers per softwareversie",
-  "Klaar voor duidelijke update-meldingen in de app",
+  "Heldere versies met duidelijke release notes",
+  "Eenvoudig terugvinden welke versie je gebruikt",
+  "Snelle toegang tot de juiste download per release",
+  "Minder onzekerheid op wedstrijddagen door voorspelbare updates",
 ];
 
 export default function Home() {
@@ -135,34 +135,28 @@ export default function Home() {
           <div className="hero-visual" aria-label="ArenaCue software preview">
             <div className="status-line">
               <span className="dot" />
-              Connected
-              <b>Mode: sponsor rotation</b>
+              Live productpreview
+              <b>Echte interface tijdens demo</b>
             </div>
-            <div className="score-preview">
-              <div className="team-card">
-                <div className="crest">H</div>
-                <strong>2</strong>
+            <div className="hero-preview-card">
+              <h3>Zo ziet ArenaCue er in het echt uit</h3>
+              <p>
+                Tijdens een demo tonen we de effectieve control- en displayweergave zoals je team die op
+                wedstrijddag gebruikt.
+              </p>
+              <div className="hero-preview-points">
+                <div>
+                  <small>Scoreboard</small>
+                  <strong>Live score, timer en events</strong>
+                </div>
+                <div>
+                  <small>LED boarding</small>
+                  <strong>Zones, playlists en sponsorrotatie</strong>
+                </div>
               </div>
-              <div className="clock-card">
-                <small>1st half</small>
-                <strong>15:48</strong>
-                <span>Sponsor window: 62%</span>
-              </div>
-              <div className="team-card">
-                <div className="crest away">A</div>
-                <strong>0</strong>
-              </div>
-            </div>
-            <div className="panel-grid">
-              <div>
-                <small>Match controls</small>
-                <button>Pause</button>
-                <button>Set time</button>
-              </div>
-              <div>
-                <small>Sponsor planning</small>
-                <p>Budget verspreid over de volledige fase</p>
-              </div>
+              <a className="secondary-button hero-preview-cta" href="#contact">
+                Bekijk in live demo
+              </a>
             </div>
             <div className="floating-logo">
               <Image
@@ -220,14 +214,14 @@ export default function Home() {
         <div className="updates-card">
           <div>
             <p className="section-kicker">Updates</p>
-            <h2>Nieuwe versies kunnen later automatisch gemeld worden in de app.</h2>
+            <h2>Altijd duidelijk welke versie je draait.</h2>
             <p>
-              Elke release kan voorzien worden van een duidelijke versie, korte changelog en downloadbare installer. Zo
-              houden clubs eenvoudig bij welke ArenaCue-versie ze gebruiken.
+              Elke release krijgt een duidelijke versie en heldere changelog, zodat clubs en operators snel weten wat
+              nieuw is en met vertrouwen live kunnen werken.
             </p>
             <p className="updates-changelog-link">
               <Link className="secondary-button" href="/changelog">
-                Bekijk changelog voor clubs
+                Bekijk alle updates
               </Link>
             </p>
           </div>
