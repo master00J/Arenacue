@@ -548,9 +548,10 @@ h2 {
 
 .split-section {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 400px);
-  gap: 42px;
-  align-items: center;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+  max-width: 860px;
 }
 
 .download-cards-stack {

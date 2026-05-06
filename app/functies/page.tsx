@@ -53,7 +53,8 @@ export default function FunctiesPage() {
         <p className="features-deep-lead">
           ArenaCue bestaat uit <strong>twee producten</strong>: <strong>ArenaCue Scoreboard</strong> voor live
           wedstrijdregie en het hoofdstadionscherm, en <strong>ArenaCue LED boarding</strong> voor perimeter-, lint- en
-          tribuneschermen met eigen zones en playlists. Hieronder zie je per product wat je er in de praktijk mee doet.
+          tribuneschermen met eigen zones en playlists. Hieronder zie je per product welke impact je operationeel mag
+          verwachten.
         </p>
 
         {/* —— Scoreboard —— */}
@@ -63,7 +64,7 @@ export default function FunctiesPage() {
           </h2>
           <p className="features-deep-lead tight">
             Live scorebord, timer, wedstrijdmodi, sponsors naast of fullscreen op het display — één control‑paneel, één
-            duidelijke regieflow naar je stadionscherm.
+            duidelijke regieflow naar je stadionscherm voor een professioneel wedstrijdbeeld.
           </p>
 
           <section className="features-deep-section" id="platform-scoreboard">
@@ -75,7 +76,7 @@ export default function FunctiesPage() {
               </li>
               <li>
                 <strong>Betrouwbaar tijdens live momenten:</strong> gebouwd voor stabiele bediening wanneer timing
-                belangrijk is.
+                cruciaal is.
               </li>
               <li>
                 <strong>Duidelijke regieflow:</strong> operatorbediening en schermoutput zijn logisch gescheiden zodat je
