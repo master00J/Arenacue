@@ -354,6 +354,14 @@ main {
   color: var(--muted);
 }
 
+.hero-product-image {
+  width: 100%;
+  height: auto;
+  border: 1px solid rgba(148, 163, 184, 0.26);
+  border-radius: 14px;
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.3);
+}
+
 .hero-preview-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;

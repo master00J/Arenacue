@@ -139,81 +139,14 @@ export default function Home() {
               <b>Control + Display</b>
             </div>
             <div className="hero-preview-card">
-              <div className="dashboard-preview-tabs">
-                <span className="active">Match</span>
-                <span>Setup</span>
-                <span>Media</span>
-              </div>
-              <div className="dashboard-preview-grid">
-                <div className="dashboard-col">
-                  <div className="dashboard-block">
-                    <div className="preview-pane-head">
-                      <small>Match timer</small>
-                      <span>Live</span>
-                    </div>
-                    <div className="preview-timer">00:00</div>
-                    <div className="preview-controls">
-                      <button>Start</button>
-                      <button>Set time</button>
-                    </div>
-                  </div>
-                  <div className="dashboard-block compact">
-                    <div className="preview-pane-head">
-                      <small>Displaymodus</small>
-                      <span>Actief</span>
-                    </div>
-                    <div className="preview-mode-row">
-                      <span>Scoreboard + sponsors</span>
-                      <strong>Aan</strong>
-                    </div>
-                  </div>
-                </div>
-                <div className="dashboard-col wide">
-                  <div className="dashboard-block display">
-                    <div className="preview-pane-head">
-                      <small>Live preview</small>
-                      <span>Match</span>
-                    </div>
-                    <div className="preview-scoreline">
-                      <div>THUIS</div>
-                      <strong>00:00</strong>
-                      <div>UIT</div>
-                    </div>
-                    <div className="preview-scoreline score">
-                      <div>0</div>
-                      <strong>-</strong>
-                      <div>0</div>
-                    </div>
-                  </div>
-                  <div className="dashboard-block compact">
-                    <div className="preview-pane-head">
-                      <small>Externe capture</small>
-                      <span>Bron</span>
-                    </div>
-                    <div className="preview-caption">Webcam of video-input kan live mee op het scherm.</div>
-                  </div>
-                </div>
-                <div className="dashboard-col">
-                  <div className="dashboard-block">
-                    <div className="preview-pane-head">
-                      <small>Sponsors live</small>
-                      <span>Budget</span>
-                    </div>
-                    <div className="preview-list">
-                      <div><span>Sponsor A</span><b>12s</b></div>
-                      <div><span>Sponsor B</span><b>9s</b></div>
-                      <div><span>Sponsor C</span><b>6s</b></div>
-                    </div>
-                  </div>
-                  <div className="dashboard-block compact">
-                    <div className="preview-pane-head">
-                      <small>Speler intro</small>
-                      <span>Klaar</span>
-                    </div>
-                    <div className="preview-caption">Intro- en matchevents worden vanuit dezelfde regie bediend.</div>
-                  </div>
-                </div>
-              </div>
+              <Image
+                src="/assets/scoreboard-preview-hero.png"
+                alt="ArenaCue control dashboard preview"
+                width={1280}
+                height={720}
+                className="hero-product-image"
+                priority
+              />
               <a className="secondary-button hero-preview-cta" href="#contact">
                 Bekijk live demo
               </a>
