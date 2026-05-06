@@ -135,27 +135,39 @@ export default function Home() {
           <div className="hero-visual" aria-label="ArenaCue software preview">
             <div className="status-line">
               <span className="dot" />
-              Live productpreview
-              <b>Echte interface tijdens demo</b>
+              Productpreview
+              <b>Control + Display</b>
             </div>
             <div className="hero-preview-card">
-              <h3>Zo ziet ArenaCue er in het echt uit</h3>
-              <p>
-                Tijdens een demo tonen we de effectieve control- en displayweergave zoals je team die op
-                wedstrijddag gebruikt.
-              </p>
-              <div className="hero-preview-points">
-                <div>
-                  <small>Scoreboard</small>
-                  <strong>Live score, timer en events</strong>
+              <div className="hero-preview-grid">
+                <div className="preview-pane">
+                  <div className="preview-pane-head">
+                    <small>Control</small>
+                    <span>Live Match</span>
+                  </div>
+                  <div className="preview-timer">15:48</div>
+                  <div className="preview-controls">
+                    <button>Start</button>
+                    <button>Pause</button>
+                    <button>Set time</button>
+                    <button>GOAL +1</button>
+                  </div>
                 </div>
-                <div>
-                  <small>LED boarding</small>
-                  <strong>Zones, playlists en sponsorrotatie</strong>
+                <div className="preview-pane display">
+                  <div className="preview-pane-head">
+                    <small>Display</small>
+                    <span>Match scoreboard</span>
+                  </div>
+                  <div className="preview-scoreline">
+                    <div>HOME</div>
+                    <strong>2 - 0</strong>
+                    <div>AWAY</div>
+                  </div>
+                  <div className="preview-caption">Sponsorrotatie en events lopen automatisch door in live modus.</div>
                 </div>
               </div>
               <a className="secondary-button hero-preview-cta" href="#contact">
-                Bekijk in live demo
+                Bekijk live demo
               </a>
             </div>
             <div className="floating-logo">

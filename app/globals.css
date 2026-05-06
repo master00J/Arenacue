@@ -354,20 +354,28 @@ main {
   color: var(--muted);
 }
 
-.hero-preview-points {
+.hero-preview-grid {
   display: grid;
-  gap: 12px;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
   margin-top: 18px;
 }
 
-.hero-preview-points > div {
+.preview-pane {
   padding: 14px 16px;
   border: 1px solid var(--line);
   border-radius: 14px;
   background: rgba(3, 9, 20, 0.55);
 }
 
-.hero-preview-points small {
+.preview-pane-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.preview-pane-head small {
   display: block;
   color: var(--muted);
   font-size: 0.72rem;
@@ -376,10 +384,70 @@ main {
   text-transform: uppercase;
 }
 
-.hero-preview-points strong {
-  display: block;
-  margin-top: 6px;
-  color: #e5f2ff;
+.preview-pane-head span {
+  color: #d7e7f8;
+  font-size: 0.8rem;
+}
+
+.preview-timer {
+  margin-top: 10px;
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--green);
+}
+
+.preview-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.preview-controls button {
+  padding: 8px 10px;
+  border: 1px solid rgba(25, 216, 255, 0.3);
+  border-radius: 10px;
+  background: rgba(25, 216, 255, 0.12);
+  color: #dbecff;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.preview-pane.display {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(25, 216, 255, 0.13), transparent 14rem),
+    rgba(3, 9, 20, 0.62);
+}
+
+.preview-scoreline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+  padding: 12px 10px;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 12px;
+}
+
+.preview-scoreline div {
+  color: #a8bfd8;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.preview-scoreline strong {
+  color: #f8fcff;
+  font-size: 1.45rem;
+  letter-spacing: 0.03em;
+}
+
+.preview-caption {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.5;
 }
 
 .hero-preview-cta {
@@ -1010,6 +1078,10 @@ h2 {
 
   .hero-actions {
     display: grid;
+  }
+
+  .hero-preview-grid {
+    grid-template-columns: 1fr;
   }
 
   .trust-row {
