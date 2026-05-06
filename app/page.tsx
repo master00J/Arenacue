@@ -139,31 +139,79 @@ export default function Home() {
               <b>Control + Display</b>
             </div>
             <div className="hero-preview-card">
-              <div className="hero-preview-grid">
-                <div className="preview-pane">
-                  <div className="preview-pane-head">
-                    <small>Control</small>
-                    <span>Live Match</span>
+              <div className="dashboard-preview-tabs">
+                <span className="active">Match</span>
+                <span>Setup</span>
+                <span>Media</span>
+              </div>
+              <div className="dashboard-preview-grid">
+                <div className="dashboard-col">
+                  <div className="dashboard-block">
+                    <div className="preview-pane-head">
+                      <small>Match timer</small>
+                      <span>Live</span>
+                    </div>
+                    <div className="preview-timer">00:00</div>
+                    <div className="preview-controls">
+                      <button>Start</button>
+                      <button>Set time</button>
+                    </div>
                   </div>
-                  <div className="preview-timer">15:48</div>
-                  <div className="preview-controls">
-                    <button>Start</button>
-                    <button>Pause</button>
-                    <button>Set time</button>
-                    <button>GOAL +1</button>
+                  <div className="dashboard-block compact">
+                    <div className="preview-pane-head">
+                      <small>Displaymodus</small>
+                      <span>Actief</span>
+                    </div>
+                    <div className="preview-mode-row">
+                      <span>Scoreboard + sponsors</span>
+                      <strong>Aan</strong>
+                    </div>
                   </div>
                 </div>
-                <div className="preview-pane display">
-                  <div className="preview-pane-head">
-                    <small>Display</small>
-                    <span>Match scoreboard</span>
+                <div className="dashboard-col wide">
+                  <div className="dashboard-block display">
+                    <div className="preview-pane-head">
+                      <small>Live preview</small>
+                      <span>Match</span>
+                    </div>
+                    <div className="preview-scoreline">
+                      <div>THUIS</div>
+                      <strong>00:00</strong>
+                      <div>UIT</div>
+                    </div>
+                    <div className="preview-scoreline score">
+                      <div>0</div>
+                      <strong>-</strong>
+                      <div>0</div>
+                    </div>
                   </div>
-                  <div className="preview-scoreline">
-                    <div>HOME</div>
-                    <strong>2 - 0</strong>
-                    <div>AWAY</div>
+                  <div className="dashboard-block compact">
+                    <div className="preview-pane-head">
+                      <small>Externe capture</small>
+                      <span>Bron</span>
+                    </div>
+                    <div className="preview-caption">Webcam of video-input kan live mee op het scherm.</div>
                   </div>
-                  <div className="preview-caption">Sponsorrotatie en events lopen automatisch door in live modus.</div>
+                </div>
+                <div className="dashboard-col">
+                  <div className="dashboard-block">
+                    <div className="preview-pane-head">
+                      <small>Sponsors live</small>
+                      <span>Budget</span>
+                    </div>
+                    <div className="preview-list">
+                      <div><span>Sponsor A</span><b>12s</b></div>
+                      <div><span>Sponsor B</span><b>9s</b></div>
+                      <div><span>Sponsor C</span><b>6s</b></div>
+                    </div>
+                  </div>
+                  <div className="dashboard-block compact">
+                    <div className="preview-pane-head">
+                      <small>Speler intro</small>
+                      <span>Klaar</span>
+                    </div>
+                    <div className="preview-caption">Intro- en matchevents worden vanuit dezelfde regie bediend.</div>
+                  </div>
                 </div>
               </div>
               <a className="secondary-button hero-preview-cta" href="#contact">

@@ -361,6 +361,50 @@ main {
   margin-top: 18px;
 }
 
+.dashboard-preview-tabs {
+  display: inline-flex;
+  gap: 8px;
+}
+
+.dashboard-preview-tabs span {
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.dashboard-preview-tabs .active {
+  color: #dbecff;
+  border-color: rgba(25, 216, 255, 0.42);
+  background: rgba(25, 216, 255, 0.12);
+}
+
+.dashboard-preview-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.3fr 0.9fr;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.dashboard-col {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+}
+
+.dashboard-block {
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(3, 9, 20, 0.62);
+}
+
+.dashboard-block.compact {
+  padding: 10px;
+}
+
 .preview-pane {
   padding: 14px 16px;
   border: 1px solid var(--line);
@@ -391,10 +435,10 @@ main {
 
 .preview-timer {
   margin-top: 10px;
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 900;
   line-height: 1;
-  color: var(--green);
+  color: #f6b339;
 }
 
 .preview-controls {
@@ -420,6 +464,10 @@ main {
     rgba(3, 9, 20, 0.62);
 }
 
+.dashboard-block.display {
+  min-height: 176px;
+}
+
 .preview-scoreline {
   display: flex;
   align-items: center;
@@ -441,6 +489,46 @@ main {
   color: #f8fcff;
   font-size: 1.45rem;
   letter-spacing: 0.03em;
+}
+
+.preview-scoreline.score {
+  margin-top: 8px;
+}
+
+.preview-scoreline.score div,
+.preview-scoreline.score strong {
+  font-size: 1.5rem;
+  letter-spacing: 0;
+}
+
+.preview-mode-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  color: #c7d8ea;
+  font-size: 0.8rem;
+}
+
+.preview-mode-row strong {
+  color: var(--green);
+}
+
+.preview-list {
+  display: grid;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.preview-list div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 8px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 8px;
+  color: #d4e3f4;
+  font-size: 0.78rem;
 }
 
 .preview-caption {
@@ -1081,6 +1169,10 @@ h2 {
   }
 
   .hero-preview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-preview-grid {
     grid-template-columns: 1fr;
   }
 
