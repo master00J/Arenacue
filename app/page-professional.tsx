@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { DemoRequestForm } from "@/components/demo-request-form";
+import { ReviewSubmitForm } from "@/components/review-submit-form";
 import { CookieSettingsTrigger } from "@/components/cookie-settings-trigger";
 import { homePageMetadata } from "@/lib/seo";
+import { getPublishedReviews } from "@/lib/reviews-public";
 
 export const metadata: Metadata = homePageMetadata();
 
@@ -62,7 +64,9 @@ const releaseItems = [
   "Voorspelbare updates voor minder stress op wedstrijddagen",
 ];
 
-export default function Home() {
+export default async function Home() {
+  const reviews = await getPublishedReviews(6);
+
   return (
     <main>
       <section className="hero-shell pro-hero-shell">
@@ -268,6 +272,43 @@ export default function Home() {
               <li key={item}>{item}</li>
             ))}
           </ul>
+        </div>
+      </section>
+
+      <section className="section reviews-section" id="reviews">
+        <div className="section-heading pro-section-heading">
+          <p>Reviews</p>
+          <h2>Ervaringen van clubs en operators</h2>
+        </div>
+        {reviews.length > 0 ? (
+          <div className="reviews-grid">
+            {reviews.map((review) => (
+              <article className="review-card" key={review.id}>
+                <p className="review-quote">“{review.quote}”</p>
+                <div className="review-meta">
+                  <strong>{review.name}</strong>
+                  <span>
+                    {review.club}
+                    {review.role ? ` · ${review.role}` : ""}
+                  </span>
+                </div>
+                <div className="review-rating" aria-label={`${review.rating} op 5`}>
+                  {"★".repeat(review.rating)}
+                </div>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <p className="reviews-empty">
+            Nog geen gepubliceerde reviews. Wil je als eerste je ervaring delen? Gebruik het formulier hieronder.
+          </p>
+        )}
+        <div className="review-form-shell">
+          <h3>Dien een review in</h3>
+          <p>
+            Je review wordt eerst nagekeken en daarna gepubliceerd op de website.
+          </p>
+          <ReviewSubmitForm />
         </div>
       </section>
 
