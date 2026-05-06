@@ -11,7 +11,7 @@ export async function GET() {
 
   const endpoint =
     `${supabaseUrl}/rest/v1/reviews?` +
-    "select=id,created_at,name,club,role,rating,quote&status=eq.published&order=created_at.desc&limit=12";
+    "select=id,created_at,name,club,role,rating,quote&status=in.(published,approved)&order=created_at.desc&limit=12";
 
   const response = await fetch(endpoint, {
     headers: {
@@ -63,7 +63,7 @@ export async function POST(request: Request) {
       role: parsed.value.role || null,
       rating: parsed.value.rating,
       quote: parsed.value.quote,
-      status: "pending",
+      status: "new",
       source: "website",
     }),
   });

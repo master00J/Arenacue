@@ -25,7 +25,7 @@ export async function getPublishedReviews(limit = 6): Promise<PublicReview[]> {
 
   const endpoint =
     `${url}/rest/v1/reviews?` +
-    `select=id,created_at,name,club,role,rating,quote&status=eq.published&order=created_at.desc&limit=${Math.max(1, Math.min(limit, 20))}`;
+    `select=id,created_at,name,club,role,rating,quote&status=in.(published,approved)&order=created_at.desc&limit=${Math.max(1, Math.min(limit, 20))}`;
 
   const response = await fetch(endpoint, {
     headers: {
