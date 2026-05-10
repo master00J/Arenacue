@@ -1,4 +1,4 @@
-import { dirname } from "node:path";
+import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const projectRoot = dirname(fileURLToPath(import.meta.url));
@@ -43,6 +43,13 @@ const nextConfig = {
   },
   images: {
     formats: ["image/avif", "image/webp"],
+  },
+  webpack(config) {
+    config.resolve.alias = {
+      ...(config.resolve.alias ?? {}),
+      "@": resolve(projectRoot),
+    };
+    return config;
   },
   async headers() {
     return [
