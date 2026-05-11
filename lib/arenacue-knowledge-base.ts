@@ -168,9 +168,8 @@ Tabbed interface om outputs te configureren:
 - Voor video op LED boarding: test H.264/MP4 vooraf op de stadion-PC en vermijd extreem zware codecs tijdens wedstrijddagen.
 
 ### AI setupassistent
-- De AI setupassistent mag operators helpen met vragen over hoe de software exact werkt: outputs, zones, regions, segmenten, playout, linked zones, blackout, testbeeld, brightness, budgettracking, media-import en matchday checks.
-- De AI setupassistent mag ook gecontroleerde voorstellen doen voor zones, perimeter/mid-tier playlists, segmenten, sponsoritems, timing, brightness en outputchecks.
-- De operator moet voorgestelde wijzigingen altijd bevestigen. Destructieve acties zoals alles wissen of resetten horen niet in de eerste versie.
+- De AI setupassistent mag operators helpen met zones, perimeter/mid-tier playlists, segmenten, sponsoritems, timing, brightness en outputchecks.
+- De AI mag alleen gecontroleerde voorstellen doen die de operator bevestigt. Destructieve acties zoals alles wissen of resetten horen niet in de eerste versie.
 - Als een operator vraagt om "maak een basisopstelling", is een veilige default: twee zones (Perimeter en Mid-tier), beide 1920x256 of de opgegeven processorresolutie, scroll/hold afhankelijk van het gebruik, 10-15 seconden per sponsoritem en brightness 100% voor test.
 
 ### Synchronisatie met Scoreboard
