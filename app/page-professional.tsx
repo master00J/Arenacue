@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { DemoRequestForm } from "@/components/demo-request-form";
+import { FooterLegalEntity } from "@/components/footer-legal-entity";
 import { ReviewSubmitForm } from "@/components/review-submit-form";
 import { CookieSettingsTrigger } from "@/components/cookie-settings-trigger";
 import { homePageMetadata } from "@/lib/seo";
@@ -91,6 +92,7 @@ export default async function Home() {
             <a href="#features">Features</a>
             <Link href="/functies">Alle functies</Link>
             <a href="#software">Software</a>
+            <Link href="/vereisten">Systeemvereisten</Link>
             <a href="#updates">Updates</a>
             <Link href="/changelog">Changelog</Link>
             <Link href="/portal">Klantportaal</Link>
@@ -132,6 +134,9 @@ export default async function Home() {
               </a>
               <Link className="secondary-button" href="/functies">
                 Bekijk functies
+              </Link>
+              <Link className="secondary-button" href="/vereisten">
+                Check systeemvereisten
               </Link>
             </div>
             <dl className="trust-row pro-trust-row" aria-label="Belangrijkste voordelen">
@@ -252,6 +257,39 @@ export default async function Home() {
         </div>
       </section>
 
+      <section className="section product-section" id="pricing">
+        <div className="product-grid">
+          <article className="product-card product-card-primary">
+            <p className="section-kicker">Prijs & licentie</p>
+            <h2>Prijs op aanvraag, afgestemd op je club.</h2>
+            <p>
+              Elke club gebruikt een andere schermketen: één stadiondisplay, extra LED-zones, meerdere installaties of
+              begeleiding bij opstart. Daarom maken we een voorstel op maat na een korte demo of intake.
+            </p>
+            <ul className="check-list compact">
+              <li>Windows-build voor ArenaCue Scoreboard of LED boarding</li>
+              <li>Klantportaal met download, licentiestatus en geactiveerde toestellen</li>
+              <li>Release-updates met duidelijke changelog voor operators</li>
+              <li>Advies over pc, schermresolutie en wedstrijddag-opstelling</li>
+            </ul>
+            <a className="secondary-button" href="#contact">
+              Vraag prijsindicatie aan
+            </a>
+          </article>
+          <article className="product-card">
+            <p className="section-kicker">Voor je stadion-pc</p>
+            <h2>Check eerst de systeemvereisten.</h2>
+            <p>
+              Video, sponsorrotatie en een tweede scherm vragen een stabiele Windows-pc. Bekijk de minimum- en
+              aanbevolen specificaties voordat je ArenaCue op wedstrijddag inzet.
+            </p>
+            <Link className="secondary-button" href="/vereisten">
+              Bekijk systeemvereisten
+            </Link>
+          </article>
+        </div>
+      </section>
+
       <section className="updates" id="updates">
         <div className="updates-card pro-updates-card">
           <div>
@@ -317,8 +355,9 @@ export default async function Home() {
           <p className="section-kicker">Start professioneel</p>
           <h2>Klaar om ArenaCue in je stadion of sportclub te gebruiken?</h2>
           <p>
-            Plan een demo, bespreek je schermopstelling en ontvang de juiste download voor je club. Demo&apos;s: één
-            aanvraag per e-mail en één demo per apparaat; daarna kan een volledige licentie wél op hetzelfde toestel.
+            Plan een demo, bespreek je schermopstelling en ontvang de juiste download voor je club. We houden demo&apos;s
+            bewust overzichtelijk met één test per e-mailadres en apparaat; daarna helpen we je verder naar een
+            volledige licentie op hetzelfde toestel.
           </p>
         </div>
         <div className="contact-stack">
@@ -326,7 +365,8 @@ export default async function Home() {
             <Image src="/assets/arenacue-icon.png" alt="" width={74} height={74} />
             <h3>Vraag een demo of download aan</h3>
             <p>
-              Vul je gegevens in en we adviseren je meteen over de juiste ArenaCue-opstelling voor jouw club.
+              Vul je gegevens in en we adviseren je meteen over de juiste ArenaCue-opstelling, systeemvereisten en
+              licentie-aanpak voor jouw club.
             </p>
             <a className="secondary-button full" href="mailto:info@arenacue.be">
               info@arenacue.be
@@ -337,18 +377,21 @@ export default async function Home() {
       </section>
 
       <footer className="footer pro-footer">
-        <span>© {new Date().getFullYear()} ArenaCue</span>
-        <span>Scoreboard, LED boarding &amp; Display Control</span>
-        <span className="footer-links">
-          <Link href="/functies">Functies</Link>
-          <Link href="/portal">Klantportaal</Link>
-          <Link href="/changelog">Changelog</Link>
-          <a href="/privacy">Privacy</a>
-          <a href="/vereisten">Systeemvereisten</a>
-          <a href="/licenses">Licenties</a>
-          <a href="/terms">Voorwaarden</a>
-          <CookieSettingsTrigger />
-        </span>
+        <FooterLegalEntity className="footer-legal-entity" />
+        <div className="footer-meta-row">
+          <span>� {new Date().getFullYear()} ArenaCue</span>
+          <span>Scoreboard, LED boarding &amp; Display Control</span>
+          <span className="footer-links">
+            <Link href="/functies">Functies</Link>
+            <Link href="/portal">Klantportaal</Link>
+            <Link href="/changelog">Changelog</Link>
+            <a href="/privacy">Privacy</a>
+            <a href="/vereisten">Systeemvereisten</a>
+            <a href="/licenties">Licenties</a>
+            <a href="/terms">Voorwaarden</a>
+            <CookieSettingsTrigger />
+          </span>
+        </div>
       </footer>
     </main>
   );
