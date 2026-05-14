@@ -379,7 +379,7 @@ export default async function Home() {
       <footer className="footer pro-footer">
         <FooterLegalEntity className="footer-legal-entity" />
         <div className="footer-meta-row">
-          <span>{'\u00A9'} {new Date().getFullYear()} ArenaCue</span>
+          <span>© {new Date().getFullYear()} ArenaCue</span>
           <span>Scoreboard, LED boarding &amp; Display Control</span>
           <span className="footer-links">
             <Link href="/functies">Functies</Link>

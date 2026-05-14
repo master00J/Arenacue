@@ -8,7 +8,7 @@ export function LegalFooter() {
     <footer className="legal-footer">
       <FooterLegalEntity className="legal-footer-entity" />
       <div className="legal-footer-meta">
-        <span>{'\u00A9'} {year} ArenaCue</span>
+        <span>© {year} ArenaCue</span>
         <span className="legal-footer-links">
           <Link href="/">Home</Link>
           <Link href="/functies">Functies</Link>
